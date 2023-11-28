@@ -7,13 +7,7 @@ import { GrAggregate } from "react-icons/gr";
 import { FaPeopleGroup } from "react-icons/fa6";
 import { toggleOption } from "@/slices/menuSlice";
 const Page = () => {
-  const stopScroll = () => {
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = "visible";
-    };
-  };
-
+  
   const OPTIONS = [
     { id: 1, title: "Overview & Details", link: "", disable: false },
     { id: 2, title: "Registration", link: "registration", disable: false },
