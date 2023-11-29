@@ -20,7 +20,7 @@ const Page = () => {
   const OPTIONS = [
     { id: 1, title: "Overview & Details", link: "",disable:false },
     { id: 2, title: "Registration", link: "registration",disable:false },
-    { id: 3, title: "Submit Project", link: "submission",disable:true  },
+    { id: 3, title: "Submission", link: "submission",disable:true  },
     { id: 4, title: "All Projects", link: "all-projects",disable:false },
   ];
 
