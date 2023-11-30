@@ -3,8 +3,6 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setOption } from "@/slices/counterSlice";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-
 import { usePathname } from "next/navigation";
 
 const OPTIONS = [
