@@ -15,6 +15,7 @@ const menuSlice = createSlice({
   reducers: {
     toggleOption: (state) => {
       state.value = !state.value;
+     
     },
   },
 });
