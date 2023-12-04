@@ -72,7 +72,7 @@ const Page = () => {
               ) : (
                 <Link
                   href={`/${link}`}
-                  // 
+                  
                   className="flex items-center   border-y py-4 px-2"
                 >
                   <Link
