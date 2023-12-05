@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { setOption } from "@/slices/counterSlice";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-const page = () => {
+
+const Page = () => {
   useEffect(() => {
     // Disable scrolling on mount
     document.body.style.overflow = "hidden";
@@ -13,12 +14,14 @@ const page = () => {
       document.body.style.overflow = "visible";
     };
   }, []);
+
   const OPTIONS = [
     { id: 1, title: "Overview & Details", link: "" },
     { id: 2, title: "Registration", link: "registration" },
     { id: 3, title: "Submit Project", link: "submission" },
     { id: 4, title: "All Projects", link: "all-projects" },
   ];
+
   const pathname = usePathname();
   const dispatch = useDispatch();
   const selectedOption = useSelector((state: any) => state.option.value);
@@ -82,4 +85,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
