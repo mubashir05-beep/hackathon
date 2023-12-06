@@ -107,7 +107,7 @@ const Page = () => {
         </div>
       </div>{" "}
       {menuState && (
-        <div className="absolute bottom-4 left-4">
+        <div className="absolute bottom-4 text-[14px] left-4">
           Designed and developed by{" "}
           <Link
             href={"https://github.com/mubashir05-beep"}
