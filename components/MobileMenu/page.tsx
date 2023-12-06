@@ -37,55 +37,56 @@ const Page = () => {
 
   const handleOptionClick = async (id: number) => {
     await dispatch(setOption(id));
-   await dispatch(toggleOption());
+    await dispatch(toggleOption());
   };
   return (
-    <div className="bg-white fixed animate-fade animate-duration-[400ms] animate-delay-200 animate-ease-linear animate-fill-both top-0 px-4 -z-10  py-28 left-0 right-0 bottom-0">
-      <div className="flex flex-col gap-8">
+    <div className="bg-white fixed animate-fade animate-duration-[900ms] animate-delay-900 animate-ease-linear animate-fill-both top-0 px-4 -z-10  py-28 left-0 right-0 bottom-0">
+      <div className="flex flex-col gap-4">
         {OPTIONS.map(({ id, title, link }) => {
           handlePathName(id, link);
           return (
-            <React.Fragment key={id}>
-              {selectedOption === id ? (
-                <div className="flex items-center animate-pulse animate-duration-400 animate-ease-linear animate-fill-both rounded bg-black text-white py-4 px-2 ">
-                  <Link
-                    href={`/${link}`}
-                    className={`rounded-full text-black h-6 w-6 bg-white text-center font-semibold cursor-pointer`}
-                    onClick={() => handleOptionClick(id)}
-                  >
-                    {id}
-                  </Link>
-                  <div>
-                    <Link
-                      href={`/${link}`}
-                      onClick={() => handleOptionClick(id)}
-                      className={` ml-3  font-semibold`}
-                    >
-                      {title}
-                    </Link>
-                  </div>
-                </div>
-              ) : (
-                <div className="flex items-center px-2">
-                  <Link
-                    href={`/${link}`}
-                    className={`rounded-full   text-white h-6 w-6 bg-black text-center cursor-pointer`}
-                    onClick={() => handleOptionClick(id)}
-                  >
-                    {id}
-                  </Link>
-                  <div>
-                    <Link
-                      href={`/${link}`}
-                      onClick={() => handleOptionClick(id)}
-                      className={` ml-3  font-semibold  `}
-                    >
-                      {title}
-                    </Link>
-                  </div>
-                </div>
-              )}
-            </React.Fragment>
+           <React.Fragment key={id}>
+  {selectedOption === id ? (
+    <Link href={`/${link}`} className="flex items-center animate-pulse   animate-duration-400 animate-ease-linear animate-fill-both rounded bg-black text-white py-4 px-2 ">
+      <Link
+        href={`/${link}`}
+        className={`rounded-full text-black h-6 w-6 bg-white text-center font-semibold cursor-pointer`}
+        onClick={() => handleOptionClick(id)}
+      >
+        {id}
+      </Link>
+      <div>
+        <Link
+          href={`/${link}`}
+          onClick={() => handleOptionClick(id)}
+          className={` ml-3  font-semibold `}
+        >
+          {title}
+        </Link>
+      </div>
+    </Link>
+  ) : (
+    <Link href={`/${link}`} className="flex items-center   border-y py-4 px-2">
+      <Link
+        href={`/${link}`}
+        className={`rounded-full text-white h-6 w-6 bg-black text-center cursor-pointer`}
+        onClick={() => handleOptionClick(id)}
+      >
+        {id}
+      </Link>
+      <div>
+        <Link
+          href={`/${link}`}
+          onClick={() => handleOptionClick(id)}
+          className={` ml-3 font-semibold `}
+        >
+          {title}
+        </Link>
+      </div>
+    </Link>
+  )}
+</React.Fragment>
+
           );
         })}
         <div className="flex items-center gap-2 mt-8 justify-center">
@@ -104,8 +105,8 @@ const Page = () => {
             </div>
           </div>
         </div>
-      </div>
-z      {menuState && (
+      </div>{" "}
+      {menuState && (
         <div className="absolute bottom-4 left-4">
           Designed and developed by{" "}
           <Link
