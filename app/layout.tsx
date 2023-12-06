@@ -5,7 +5,7 @@ import Navbar from "@/components/Navbar/page";
 const inter = Inter({ subsets: ["latin"] });
 import MobileCenterContent from "@/components/MobileContent/page";
 import Provider from "@/slices/Providers";
-
+import ProvidersLoading from "@/providers/NextProgress";
 export const metadata: Metadata = {
   title: "InnoJam 2023",
   description:
@@ -21,6 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Provider>
+          <ProvidersLoading>
           <div className="flex justify-center flex-col items-center">
             <Navbar />
             <div>{children}</div>
@@ -28,6 +29,7 @@ export default function RootLayout({
               <MobileCenterContent />
             </div>
           </div>
+          </ProvidersLoading>
         </Provider>
       </body>
     </html>
