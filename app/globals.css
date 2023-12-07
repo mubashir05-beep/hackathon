@@ -15,6 +15,9 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
+body{
+  background: #000;
+}
 
 .bg-highlight {
   background-color: #fc0e0e;
@@ -40,7 +43,7 @@
 
 .bg_glass{
   /* From https://css.glass */
-background: rgba(255, 255, 255, 0);
+background: rgba(0, 0, 0, 0.144);
 border-radius: 16px;
 box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 backdrop-filter: blur(8.6px);

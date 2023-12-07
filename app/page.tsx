@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect } from "react";
-import Steps from '@/components/HeroSteps/page'
+import Steps from "@/components/HeroSteps/page";
+import Encourage from "@/components/Encouragement/page";
 const Home = () => {
   useEffect(() => {
     const videoElement = document.getElementsByTagName("video")[0];
@@ -19,7 +20,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="flex items-center flex-col absolute  top-0 bottom-0 left-0 right-0 justify-center w-screen h-screen">
+    <div className="flex items-center flex-col  absolute  top-0 bottom-0 left-0 right-0 justify-center w-screen h-screen">
       <video
         autoPlay
         loop
@@ -29,15 +30,15 @@ const Home = () => {
       >
         <source src="/assets/hero.mp4" type="video/mp4" />
       </video>
-      <div className="flex items-center absolute  justify-between w-1/2">
-        <div className="flex flex-col ">
-          <div >
-<Steps/>
-          </div>
-          <div></div>
+      <div className="flex max-[1260px]:flex-col items-center gap-9 absolute justify-between w-screen px-6">
+        <div className="flex w-full  ">
+          <Steps />
+         
         </div>
-        <div className="h-[400px] w-3 bg-white"></div>
-        <div className=" flex">dsd</div>
+   
+        <div className="flex w-full flex-col ">
+          {/* <Encourage /> */}
+        </div>
       </div>
     </div>
   );
