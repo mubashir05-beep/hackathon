@@ -30,7 +30,7 @@ const Page = () => {
   };
 
   return (
-    <div className="flex items-center justify-center space-x-4 bg-black z-50 text-white rounded-md mx-4 p-4">
+    <div className="flex items-center justify-center space-x-4 bg-black z-50 text-white rounded-md  p-4">
       {OPTIONS.map(({ id, title, link }) => {
         handlePathName(id, link);
         return (

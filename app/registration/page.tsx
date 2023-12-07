@@ -1,7 +1,7 @@
 import React from "react";
-
+import Steps from '@/components/HeroSteps/page'
 const page = () => {
-  return <p>Current pathname</p>;
+  return <Steps/>;
 };
 
 export default page;

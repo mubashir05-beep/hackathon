@@ -22,7 +22,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <Provider>
           <ProvidersLoading>
-          <div className="flex justify-center flex-col items-center">
+          <div className="flex  h-screen flex-col">
             <Navbar />
             <div>{children}</div>
             <div className="min-[1370px]:hidden fixed max-[620px]:hidden min-[1024px]:left-4 bottom-4  ">
