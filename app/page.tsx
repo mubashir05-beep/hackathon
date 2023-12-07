@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect } from "react";
 import Steps from "@/components/HeroSteps/page";
-import Encourage from "@/components/Encouragement/page";
+// import Encourage from "@/components/Encouragement/page";
 const Home = () => {
   useEffect(() => {
     const videoElement = document.getElementsByTagName("video")[0];

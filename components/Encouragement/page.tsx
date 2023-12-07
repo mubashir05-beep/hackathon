@@ -7,7 +7,7 @@ interface Option {
     title: string;
     content: string;
   }
-const page = () => {
+const EncouragementPage = () => {
     const [expandedOption, setExpandedOption] = useState<number | null>(null);
 
     const toggleExpand = (id: number) => {
@@ -81,4 +81,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default EncouragementPage;
