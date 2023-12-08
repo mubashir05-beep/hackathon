@@ -1,49 +1,37 @@
-"use client";
-
-import { FaArrowUp, FaArrowDown } from "react-icons/fa";
-import React, { useState, forwardRef } from "react";
-import Magnetic from "../Framer";
-import styles from "./style.module.scss";
+import React from 'react';
 interface Option {
-  id: number;
-  title: string;
-  content: string;
-}
+    id: number;
+    title: string;
+    content: string;
+  }
 
-const ShortEncouragementPage = forwardRef<HTMLDivElement, {}>((props, ref) => {
-  const [hoveredOption, setHoveredOption] = useState<number | null>(null);
-
-  const handleToggle = (id: number) => {
-    setHoveredOption((prev) => (prev === id ? null : id));
-  };
-  const OPTIONS: Option[] = [
-    {
-      id: 1,
-      title: "Learn and Apply:",
-      content:
-        "Gain hands-on experience in web development by tackling real-world challenges.",
-    },
-    {
-      id: 2,
-      title: "Showcase Your Creativity:",
-      content:
-        " Demonstrate your unique ideas and problem-solving skills through a beginner-friendly project.",
-    },
-    {
-      id: 3,
-      title: "Connect with Peers:",
-      content:
-        "Engage with a supportive community of fellow beginners and experienced mentors..",
-    },
-  ];
-
-  return (
-    <div className="flex flex-col gap-3 w-[500px] bg_glass p-3">
-      <div className="flex flex-col pt-2">
-        <div className="flex text-[18px] text-white font-extrabold">
-          Why join us?
-        </div>
+const BasicRules: React.FC = () => {
+    const OPTIONS: Option[] = [
         {
+          id: 1,
+          title: "Teams:",
+          content:
+            "Form interdisciplinary teams of 2 to 5 members or join individually to be matched with a team.",
+        },
+        {
+          id: 2,
+          title: "Technology Stack:",
+          content:
+            " Choose a technology stack that aligns with your solution, promoting creativity across various platforms.",
+        },
+        {
+          id: 3,
+          title: "Open Collaboration:",
+          content:
+            "Foster collaboration by sharing insights and code snippets, whether you're a beginner or an experienced developer.",
+        },
+      ];
+    
+  return (
+    <div className="max-w-lg mx-auto p-4  bg_glass  text-white">
+      <h2 className="text-2xl font-semibold mb-4">Basic Rules</h2>
+
+      {
   OPTIONS.map(({ id, title, content }) => (
     <div key={id} className="flex flex-col text-white relative">
       <div
@@ -90,9 +78,8 @@ const ShortEncouragementPage = forwardRef<HTMLDivElement, {}>((props, ref) => {
     </div>
   ))
 }
-      </div>
     </div>
   );
-});
+};
 
-export default ShortEncouragementPage;
+export default BasicRules;

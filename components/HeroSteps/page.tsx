@@ -59,7 +59,7 @@ const Steps = forwardRef<HTMLDivElement, {}>((props, ref) => {
           <div
             className={`    
              flex w-full flex-row-reverse gap-8 border-b cursor-pointer border-black p-3 items-center justify-between relative`}
-            onMouseEnter={() => handleMouseEnter(id)}
+            onClick={() => handleMouseEnter(id)}
           >
             <div>
               {hoveredOption === id ? (

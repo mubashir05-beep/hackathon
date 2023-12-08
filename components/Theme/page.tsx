@@ -3,7 +3,7 @@ import React from "react";
 
 const page = () => {
   return (
-    <div className="flex flex-col gap-3 p-3  text-white bg_glass ">
+    <div className="flex flex-col gap-4 p-4  text-white bg_glass ">
       <div className=" ">
         <div className="text-[18px] font-semibold ">Theme for the Hackathon:</div>
         <div className="font-bold text-white text-[20px]">

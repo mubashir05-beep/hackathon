@@ -29,9 +29,9 @@ export default function RootLayout({
           <div className="flex  h-screen flex-col">
             <Navbar />
             <div>{children}</div>
-            <div className="min-[1370px]:hidden fixed max-[620px]:hidden min-[1024px]:left-4 bottom-4  ">
+            {/* <div className="min-[1370px]:hidden fixed max-[620px]:hidden min-[1024px]:left-4 bottom-4  ">
               <MobileCenterContent />
-            </div>
+            </div> */}
           </div>
           </ProvidersLoading>
         </Provider>

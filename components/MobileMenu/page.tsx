@@ -45,59 +45,64 @@ const Page = () => {
         {OPTIONS.map(({ id, title, link }) => {
           handlePathName(id, link);
           return (
-           <React.Fragment key={id}>
-  {selectedOption === id ? (
-    <Link href={`/${link}`} className="flex items-center animate-pulse   animate-duration-400 animate-ease-linear animate-fill-both rounded bg-black text-white py-4 px-2 ">
-      <Link
-        href={`/${link}`}
-        className={`rounded-full text-black h-6 w-6 bg-white text-center font-semibold cursor-pointer`}
-        onClick={() => handleOptionClick(id)}
-      >
-        {id}
-      </Link>
-      <div>
-        <Link
-          href={`/${link}`}
-          onClick={() => handleOptionClick(id)}
-          className={` ml-3  font-semibold `}
-        >
-          {title}
-        </Link>
-      </div>
-    </Link>
-  ) : (
-    <Link href={`/${link}`} className="flex items-center   border-y py-4 px-2">
-      <Link
-        href={`/${link}`}
-        className={`rounded-full text-white h-6 w-6 bg-black text-center cursor-pointer`}
-        onClick={() => handleOptionClick(id)}
-      >
-        {id}
-      </Link>
-      <div>
-        <Link
-          href={`/${link}`}
-          onClick={() => handleOptionClick(id)}
-          className={` ml-3 font-semibold `}
-        >
-          {title}
-        </Link>
-      </div>
-    </Link>
-  )}
-</React.Fragment>
-
-          );
+            <React.Fragment key={id}>
+              {selectedOption === id ? (
+                <Link
+                  href={`/${link}`}
+                  className="flex items-center animate-pulse   animate-duration-400 animate-ease-linear animate-fill-both rounded bg-black text-white py-4 px-2 "
+                >
+                  <Link
+                    href={`/${link}`}
+                    className={`rounded-full text-black h-6 w-6 bg-white text-center font-semibold cursor-pointer`}
+                    onClick={() => handleOptionClick(id)}
+                  >
+                    {id}
+                  </Link>
+                  <div>
+                    <Link
+                      href={`/${link}`}
+                      onClick={() => handleOptionClick(id)}
+                      className={` ml-3  font-semibold `}
+                    >
+                      {title}
+                    </Link>
+                  </div>
+                </Link>
+              ) : (
+                <Link
+                  href={`/${link}`}
+                  className="flex items-center   border-y py-4 px-2"
+                >
+                  <Link
+                    href={`/${link}`}
+                    className={`rounded-full text-white h-6 w-6 bg-black text-center cursor-pointer`}
+                    onClick={() => handleOptionClick(id)}
+                  >
+                    {id}
+                  </Link>
+                  <div>
+                    <Link
+                      href={`/${link}`}
+                      onClick={() => handleOptionClick(id)}
+                      className={` ml-3 font-semibold `}
+                    >
+                      {title}
+                    </Link>
+                  </div>
+                </Link>
+              )}
+            </React.Fragment>
+          );  
         })}
         <div className="flex items-center gap-2 mt-8 justify-center">
-          <div className="flex items-center min-[621px]:hidden max-[1370px]:flex bg-gray-100 h-[56px] p-4 rounded-full gap-2">
+          <div className="flex items-center bg-gray-100 h-[56px] p-4 rounded-full gap-2">
             <div>Contact</div>
 
             <div className="bg-black text-white h-8 w-8 flex items-center justify-center rounded-full">
               <GrAggregate />
             </div>
           </div>
-          <div className="flex items-center min-[621px]:hidden max-[1370px]:flex bg-gray-100 h-[56px]  p-4 rounded-full gap-2">
+          <div className="flex items-center bg-gray-100 h-[56px]  p-4 rounded-full gap-2">
             <div>Contributors</div>
 
             <div className="bg-black text-white h-8 w-8 flex items-center justify-center rounded-full">

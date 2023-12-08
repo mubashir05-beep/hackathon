@@ -6,6 +6,10 @@ import ShortEncouragementPage from "@/components/ShortEncouragement/Page";
 import Theme from "@/components/Theme/page";
 import StickyMouse from "@/components/StickyCursor/page";
 import Steps from "@/components/HeroSteps/page";
+
+
+
+import BasicRules from "@/components/Rules/page";
 const Home = () => {
   useEffect(() => {
     const videoElement = document.getElementsByTagName("video")[0];
@@ -30,20 +34,19 @@ const Home = () => {
           autoPlay
           loop
           muted
-          className="  -z-10 object-cover fixed rounded-lg"
+          className="-z-10 object-cover fixed rounded-lg"
           style={{ width: `calc(100% - 1rem)`, height: `calc(100% - 1rem)` }}
         >
           <source src="/assets/hero.mp4" type="video/mp4" />
         </video>
-        <div className="flex flex-col items-center gap-3 absolute top-24 justify-between w-screen px-6">
-          <div className="flex max-[1122px]:flex-col     gap-3   ">
-            <div className="">
-              <Steps ref={stickyElement} />
-            </div>
-            {/* <Theme /> */}
+        <div className="flex flex-col gap-4 absolute top-24 justify-center w-screen px-6"style={{ height: `calc(100vh - 7.5rem)` }}
+        >
+          <div className="flex w-full gap-4 h-full">
+            <Theme />
+            <BasicRules/>
           </div>
-          <div className="flex flex-1">
-            {/* <ShortEncouragementPage /> */}
+          <div className="flex  ">
+            <ShortEncouragementPage />
           </div>
         </div>
       </div>

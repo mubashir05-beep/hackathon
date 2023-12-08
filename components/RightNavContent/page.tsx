@@ -6,7 +6,7 @@ import Menu from "./Menu";
 const page = () => {
   return (
     <>
-      <div className="flex items-center max-[620px]:hidden bg-gray-100 h-[56px] mx-4 p-4 rounded-full gap-2 ">
+      {/* <div className="flex items-center max-[620px]:hidden bg-gray-100 h-[56px] mx-4 p-4 rounded-full gap-2 ">
         <Link href={"/contact"} className="">
           Contact
         </Link>
@@ -14,7 +14,7 @@ const page = () => {
           {" "}
           <GrAggregate />
         </div>
-      </div>
+      </div> */}
       <Menu />
     </>
   );
