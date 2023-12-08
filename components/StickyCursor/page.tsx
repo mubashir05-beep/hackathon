@@ -50,3 +50,5 @@ const Index = ({ stickyElement }: any) => {
     </div>
   )
 }
+
+export default Index;
