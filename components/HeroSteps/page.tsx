@@ -103,5 +103,5 @@ const Steps = forwardRef<HTMLDivElement, {}>((props, ref) => {
     </div>
   );
 });
-
+Steps.displayName = 'Steps';
 export default Steps;
