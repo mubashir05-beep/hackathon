@@ -6,7 +6,7 @@ interface IndexProps {
   stickyElement: React.RefObject<HTMLDivElement>;
 }
 
-export default function index({ stickyElement }: IndexProps) {
+export default function Index({ stickyElement }: IndexProps) {
   const cursorSize = 15;
   const mouse = {
     x: useMotionValue(0),
