@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, forwardRef } from "react";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
-
+import ReactTooltip from "react-tooltip";
+import styles from "./style.module.scss";
+import Magnetic from "../Framer";
 interface Option {
   id: number;
   title: string;
   content: string;
 }
 
-const Page: React.FC = () => {
+const Steps = forwardRef<HTMLDivElement, {}>((props, ref) => {
   const OPTIONS: Option[] = [
     {
       id: 1,
@@ -34,30 +36,37 @@ const Page: React.FC = () => {
         "Immerse yourself in a gallery of all projects submitted by talented participants. Witness a showcase of inventive solutions and ideas that emerged during the hackathon.",
     },
   ];
-  const [expandedOption, setExpandedOption] = useState<number | null>(null);
+  const [hoveredOption, setHoveredOption] = useState<number | null>(null);
 
-  const toggleExpand = (id: number) => {
-    if (expandedOption === id) {
-      setExpandedOption(null); // Close the currently open tab
-    } else {
-      setExpandedOption(id); // Open the clicked tab
-    }
+  const handleMouseEnter = (id: number) => {
+    setHoveredOption(id);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredOption(null);
   };
 
   return (
     <div className="flex flex-col w-[450px] text-white p-3 gap-3 bg_glass">
       <div className="font-bold text-white text-[20px]">
-        <span className="text-[40px] text-white font-extrabold mix-blend-difference">Hackathon Journey:</span>
+        <span className="text-[40px] text-white font-extrabold mix-blend-difference">
+          Hackathon Journey:
+        </span>
         <br /> From Registration to Innovation
       </div>
       {OPTIONS.map(({ id, title, content }) => (
-        <div key={id} className="flex flex-col ">
+        <div key={id} className="flex flex-col relative">
           <div
-            onClick={() => toggleExpand(id)}
-            className="flex w-full flex-row-reverse gap-8 border-b cursor-pointer border-black p-3 items-center justify-between"
+            className={`    
+             flex w-full flex-row-reverse gap-8 border-b cursor-pointer border-black p-3 items-center justify-between relative`}
+            onMouseEnter={() => handleMouseEnter(id)}
           >
             <div>
-              {expandedOption === id ? <FaArrowUp /> : <FaArrowDown />}
+              {hoveredOption === id ? (
+                <FaArrowUp size={18} onClick={() => handleMouseLeave()} />
+              ) : (
+                <FaArrowDown size={18} onClick={() => handleMouseEnter(id)} />
+              )}
             </div>
             <div className="flex items-center gap-2">
               <span
@@ -68,11 +77,31 @@ const Page: React.FC = () => {
               <span className="font-semibold text-[18px]">{title}</span>
             </div>
           </div>
-          {expandedOption === id && <p className="px-3 text-[15px] pt-2">{content}</p>}
+          {hoveredOption === id && (
+            <div
+              className={`${styles.bounds} absolute   z-[10000] mt-2 animate-fade-up`}
+            >
+              <Magnetic>
+                <div
+                  ref={ref}
+                  className={`${styles.bounds} bg-black text-white p-2 rounded-md max-w-[500px] flex items-center gap-3 `}
+                  onMouseLeave={() => handleMouseLeave()}
+                  onClick={() => handleMouseLeave()}
+                >
+                  <div
+                    className={`rounded-full text-black h-6 w-6 bg-white text-center cursor-pointer`}
+                  >
+                    {id}
+                  </div>
+                  <div className="w-[300px] break-words">{content}</div>
+                </div>
+              </Magnetic>
+            </div>
+          )}
         </div>
       ))}
     </div>
   );
-};
+});
 
-export default Page;
+export default Steps;

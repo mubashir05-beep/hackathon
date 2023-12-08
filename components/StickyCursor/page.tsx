@@ -1,54 +1,46 @@
-'use client'
-// Import necessary dependencies
-import React, { useEffect } from 'react';
-import styles from './style.module.scss';
-import { motion, useMotionValue, useSpring } from 'framer-motion';
+"use client";
+import { useEffect } from "react";
+import styles from "./style.module.scss";
+import { motion, useMotionValue, useSpring } from "framer-motion";
+interface IndexProps {
+  stickyElement: React.RefObject<HTMLDivElement>;
+}
 
-// Define your component function with an uppercase letter
-const Index = ({ stickyElement }: any) => {
+export default function index({ stickyElement }: IndexProps) {
   const cursorSize = 15;
-
-  // Use React hooks inside the component
   const mouse = {
     x: useMotionValue(0),
-    y: useMotionValue(0)
+    y: useMotionValue(0),
   };
 
   const smoothOptions = { damping: 20, stiffness: 300, mass: 0.5 };
   const smoothMouse = {
     x: useSpring(mouse.x, smoothOptions),
-    y: useSpring(mouse.y, smoothOptions)
+    y: useSpring(mouse.y, smoothOptions),
   };
 
-  // Define the function inside the component
   const manageMouseMove = (e: { clientX: any; clientY: any }) => {
     const { clientX, clientY } = e;
     mouse.x.set(clientX - cursorSize / 2);
     mouse.y.set(clientY - cursorSize / 2);
   };
 
-  // Use useEffect inside the component
   useEffect(() => {
-    window.addEventListener('mousemove', manageMouseMove);
-
-    // Cleanup function
+    window.addEventListener("mousemove", manageMouseMove);
     return () => {
-      window.removeEventListener('mousemove', manageMouseMove);
+      window.removeEventListener("mousemove", manageMouseMove);
     };
   }, []);
 
-  // Return the JSX for your component
   return (
     <div className={styles.cursorContainer}>
-      <motion.div 
+      <motion.div
         style={{
-          left: smoothMouse.x, 
+          left: smoothMouse.x,
           top: smoothMouse.y,
-        }} 
-        className={styles.cursor}>
-      </motion.div>
+        }}
+        className={styles.cursor}
+      ></motion.div>
     </div>
-  )
+  );
 }
-
-export default Index;
