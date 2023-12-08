@@ -1,7 +1,9 @@
 "use client";
 import React, { useEffect } from "react";
 import Steps from "@/components/HeroSteps/page";
-// import Encourage from "@/components/Encouragement/page";
+import Encourage from "@/components/Encouragement/page";
+import ShortEncouragementPage from "@/components/ShortEncouragement/Page";
+import Theme from "@/components/Theme/page";
 const Home = () => {
   useEffect(() => {
     const videoElement = document.getElementsByTagName("video")[0];
@@ -25,19 +27,20 @@ const Home = () => {
         autoPlay
         loop
         muted
-        className="  -z-10 object-cover rounded-lg"
+        className="  -z-10 object-cover fixed rounded-lg"
         style={{ width: `calc(100% - 1rem)`, height: `calc(100% - 1rem)` }}
       >
         <source src="/assets/hero.mp4" type="video/mp4" />
       </video>
-      <div className="flex max-[1260px]:flex-col items-center gap-9 absolute justify-between w-screen px-6">
-        <div className="flex w-full  ">
-          <Steps />
-         
+      <div className="flex flex-col items-center gap-3 absolute top-24 justify-between w-screen px-6">
+        <div className="flex max-[1122px]:flex-col     gap-3   ">
+          <div className="">
+            <Steps />
+          </div>
+          {/* <Theme /> */}
         </div>
-   
-        <div className="flex w-full flex-col ">
-          {/* <Encourage /> */}
+        <div className="flex flex-1">
+          <ShortEncouragementPage />
         </div>
       </div>
     </div>

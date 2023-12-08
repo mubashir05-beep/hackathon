@@ -45,7 +45,7 @@ const Page: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col w-[450px] text-white p-4 gap-4 bg_glass">
+    <div className="flex flex-col w-[450px] text-white p-3 gap-3 bg_glass">
       <div className="font-bold text-white text-[20px]">
         <span className="text-[40px] text-white font-extrabold mix-blend-difference">Hackathon Journey:</span>
         <br /> From Registration to Innovation

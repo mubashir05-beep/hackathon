@@ -6,6 +6,8 @@ const inter = Inter({ subsets: ["latin"] });
 import MobileCenterContent from "@/components/MobileContent/page";
 import Provider from "@/slices/Providers";
 import ProvidersLoading from "@/providers/NextProgress";
+
+import StickyCursor from '@/components/StickyCursor/page'
 export const metadata: Metadata = {
   title: "InnoJam 2023",
   description:
@@ -22,6 +24,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <Provider>
           <ProvidersLoading>
+            <StickyCursor/>
           <div className="flex  h-screen flex-col">
             <Navbar />
             <div>{children}</div>
