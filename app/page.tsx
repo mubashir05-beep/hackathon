@@ -6,10 +6,9 @@ import ShortEncouragementPage from "@/components/ShortEncouragement/Page";
 import Theme from "@/components/Theme/page";
 import StickyMouse from "@/components/StickyCursor/page";
 import Steps from "@/components/HeroSteps/page";
+import Criteria from "@/components/Criteria/page";
 
-
-
-// import BasicRules from "@/components/Rules/page";
+import BasicRules from "@/components/Rules/page";
 const Home = () => {
   useEffect(() => {
     const videoElement = document.getElementsByTagName("video")[0];
@@ -39,11 +38,18 @@ const Home = () => {
         >
           <source src="/assets/hero.mp4" type="video/mp4" />
         </video>
-        <div className="flex flex-col gap-4 absolute top-24 justify-center w-screen px-6"style={{ height: `calc(100vh - 7.5rem)` }}
+        <div
+          className="flex flex-col gap-4 absolute top-24 justify-center w-screen px-6"
+          style={{ height: `calc(100vh - 7.5rem)` }}
         >
-          <div className="flex w-full gap-4 h-full">
+          <div className="flex h-full gap-4">
             <Theme />
-            {/* <BasicRules/> */}
+            
+            <div className="flex gap-4 h-full ">
+              <BasicRules />
+              <Criteria />
+              
+            </div>
           </div>
           <div className="flex  ">
             <ShortEncouragementPage />

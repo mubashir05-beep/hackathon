@@ -7,8 +7,9 @@ const inter = Inter({ subsets: ["latin"] });
 import MobileCenterContent from "@/components/MobileContent/page";
 import Provider from "@/slices/Providers";
 import ProvidersLoading from "@/providers/NextProgress";
-
+import PreLoadProvider from "@/providers/PreLoading";
 import StickyCursor from '@/components/StickyCursor/page'
+
 export const metadata: Metadata = {
   title: "InnoJam 2023",
   description:
@@ -23,18 +24,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <PreLoadProvider>
         <Provider>
           <ProvidersLoading>
-            
           <div className="flex  h-screen flex-col">
             <Navbar />
             <div>{children}</div>
-            {/* <div className="min-[1370px]:hidden fixed max-[620px]:hidden min-[1024px]:left-4 bottom-4  ">
-              <MobileCenterContent />
-            </div> */}
           </div>
           </ProvidersLoading>
         </Provider>
+        </PreLoadProvider>
       </body>
     </html>
   );
