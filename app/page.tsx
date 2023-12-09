@@ -9,7 +9,7 @@ import Steps from "@/components/HeroSteps/page";
 
 
 
-import BasicRules from "@/components/Rules/page";
+// import BasicRules from "@/components/Rules/page";
 const Home = () => {
   useEffect(() => {
     const videoElement = document.getElementsByTagName("video")[0];
@@ -43,7 +43,7 @@ const Home = () => {
         >
           <div className="flex w-full gap-4 h-full">
             <Theme />
-            <BasicRules/>
+            {/* <BasicRules/> */}
           </div>
           <div className="flex  ">
             <ShortEncouragementPage />
