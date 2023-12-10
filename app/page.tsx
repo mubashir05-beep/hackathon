@@ -36,14 +36,14 @@ const Home = () => {
         <div className="flex flex-col gap-4 top-24 absolute  min-[1595px]:bottom-6 pb-6  min-[1595px]:justify-center  w-screen px-6">
           <div className="flex  max-[1595px]:flex-col h-fit gap-4">
             <Theme />
-            <div className="flex gap-4  ">
+            <div className="flex gap-4 max-[1595px]:flex-col  ">
               <BasicRules />
               <Criteria />
             </div>
           </div>
-          <div className="flex max-[1595px]:flex-col h-fit gap-4">
+          <div className="flex  max-[1595px]:flex-col-reverse h-fit gap-4">
             <ShortEncouragementPage />
-            <div className="flex gap-4  ">
+            <div className="flex gap-4  max-[990px]:flex-col  ">
               <Countdown />
               <Countdown />
             </div>

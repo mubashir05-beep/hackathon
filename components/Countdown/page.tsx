@@ -66,7 +66,7 @@ const CountdownPage = () => {
   }
 
   return (
-    <div className="bg_glass w-full flex flex-col gap-3 text-white p-4 h-full">
+    <div className="bg_glass w-[500px] flex flex-col gap-3 text-white p-4 h-full">
       <div className=" flex flex-col">
         <div className="text-[30px] font-semibold">Countdown </div>
         <div className="text-[45px] font-bold">{countdown}</div>
