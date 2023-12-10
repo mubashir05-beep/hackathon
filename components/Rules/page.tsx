@@ -35,7 +35,7 @@ const BasicRules: React.FC = forwardRef<HTMLDivElement, {}>((props, ref) => {
     setHoveredOption((prev) => (prev === id ? null : id));
   };
   return (
-    <div className="w-[500px] flex flex-col justify-between p-4  bg_glass  text-white">
+    <div className="w-full flex flex-col justify-between p-4  bg_glass  text-white">
      <div> <h2 className="text-2xl font-semibold mb-4">Basic Rules</h2>
     
       {OPTIONS.map(({ id, title, content }) => (
