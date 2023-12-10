@@ -15,7 +15,7 @@ const Menu = () => {
   return (
     <>
       <div
-        className={`flex items-center flex bg-gray-100 h-[56px] mx-4 p-4 cursor-pointer rounded-full gap-2
+        className={` items-center flex bg-gray-100 h-[56px] mx-4 p-4 cursor-pointer rounded-full gap-2
          `}
         onClick={() => {
           dispatch(toggleOption());

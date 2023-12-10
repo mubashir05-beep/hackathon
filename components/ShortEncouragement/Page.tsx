@@ -38,7 +38,7 @@ const ShortEncouragementPage = forwardRef<HTMLDivElement, {}>((props, ref) => {
   ];
 
   return (
-    <div className="flex flex-col gap-4 w-[500px] bg_glass p-4">
+    <div className="flex flex-col gap-4 w-full bg_glass p-4">
       <div className="flex flex-col gap-1 pt-2">
         <div className="flex text-[18px] text-white font-extrabold">
           Why join us?

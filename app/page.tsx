@@ -1,27 +1,21 @@
 "use client";
 import React, { useEffect, useRef } from "react";
-
-import Encourage from "@/components/Encouragement/page";
 import ShortEncouragementPage from "@/components/ShortEncouragement/Page";
 import Theme from "@/components/Theme/page";
 import StickyMouse from "@/components/StickyCursor/page";
-import Steps from "@/components/HeroSteps/page";
 import Criteria from "@/components/Criteria/page";
-
 import BasicRules from "@/components/Rules/page";
+import Countdown from "@/components/Countdown/page";
+
 const Home = () => {
   useEffect(() => {
     const videoElement = document.getElementsByTagName("video")[0];
-
     const handleVideoEnded = () => {
       videoElement.load();
       videoElement.play();
     };
-
     videoElement.addEventListener("ended", handleVideoEnded);
-
     return () => {
-      // Cleanup to remove the event listener when the component unmounts
       videoElement.removeEventListener("ended", handleVideoEnded);
     };
   }, []);
@@ -39,20 +33,22 @@ const Home = () => {
           <source src="/assets/hero.mp4" type="video/mp4" />
         </video>
         <div
-          className="flex flex-col gap-4 absolute top-24 justify-center w-screen px-6"
-          style={{ height: `calc(100vh - 7.5rem)` }}
+          className="flex flex-col gap-4  justify-center w-screen px-6"
+          // style={{ height: `max-[1595px]:calc(100vh - 7.5rem)` }}
         >
-          <div className="flex h-full gap-4">
+          <div className="flex  max-[1595px]:flex-col gap-4">
             <Theme />
-            
             <div className="flex gap-4 h-full ">
               <BasicRules />
               <Criteria />
-              
             </div>
           </div>
-          <div className="flex  ">
+          <div className="flex h-full max-[1595px]:flex-col gap-4">
             <ShortEncouragementPage />
+            <div className="flex gap-4 h-full ">
+              <Countdown />
+              <Countdown />
+            </div>
           </div>
         </div>
       </div>
