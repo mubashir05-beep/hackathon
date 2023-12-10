@@ -36,7 +36,7 @@ const BasicRules: React.FC = forwardRef<HTMLDivElement, {}>((props, ref) => {
   };
   return (
     <div className=" flex flex-col w-[500px] max-[1595px]:w-full justify-between p-4  gap-4  bg_glass  text-white">
-     <div> <h2 className="text-2xl font-semibold mb-4">Basic Rules</h2>
+     <div> <h2 className="text-2xl font-semibold mb-4">Rules</h2>
     
       {OPTIONS.map(({ id, title, content }) => (
         <div key={id} className="flex flex-col text-white relative">
@@ -83,8 +83,10 @@ const BasicRules: React.FC = forwardRef<HTMLDivElement, {}>((props, ref) => {
           )}
         </div>
       ))}</div>
-      <div>In any competition or event, rules serve as the guiding principles that ensure fair play, integrity, and a level playing field for all participants. Judges play a crucial role in interpreting and enforcing these rules, evaluating participants based on predetermined criteria, and ultimately determining winners.</div>
-    </div>
+      <div className="flex gap-2 flex-col">
+      <div className="text-[18px]  font-bold">Note:</div>
+      <div className="text-[15px]">In any competition or event, rules guide fair play, integrity, and equal footing. Judges interpret and enforce these rules, evaluate participants based on criteria, and determine winners.</div>
+    </div></div>
   );
 });
 
