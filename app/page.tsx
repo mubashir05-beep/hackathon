@@ -22,7 +22,7 @@ const Home = () => {
   const stickyElement = useRef(null);
   return (
     <>
-      <div className="flex items-center flex-col  absolute  top-0 bottom-0 left-0 right-0 justify-center w-screen h-screen">
+      <div className="flex items-center flex-col  absolute  top-0 bottom-0 left-0 right-0 justify-center ">
         <video
           autoPlay
           loop
@@ -33,7 +33,7 @@ const Home = () => {
           <source src="/assets/hero.mp4" type="video/mp4" />
         </video>
         <div
-          className="flex flex-col gap-4  justify-center w-screen px-6"
+          className="flex flex-col gap-4   w-screen px-6"
           // style={{ height: `max-[1595px]:calc(100vh - 7.5rem)` }}
         >
           <div className="flex  max-[1595px]:flex-col gap-4">
