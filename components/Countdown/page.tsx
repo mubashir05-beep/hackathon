@@ -1,10 +1,11 @@
+'use client'
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { FiExternalLink } from "react-icons/fi";
 
 const CountdownPage = () => {
   const registrationEndDate = new Date("December 11, 2023 09:50:00").getTime();
-  const submissionStartDate = new Date("December 13, 2023 09:50:50").getTime();
+  const submissionStartDate = new Date("December 11, 2023 09:55:50").getTime();
   const submissionEndDate = submissionStartDate + 2 * 24 * 60 * 60 * 1000; // 2 days in milliseconds
 
   const [countdown, setCountdown] = useState(countdownTo(registrationEndDate));
@@ -66,16 +67,16 @@ const CountdownPage = () => {
   }
 
   return (
-    <div className="bg_glass w-[500px] flex flex-col gap-3 text-white p-4 h-full">
+    <div className="bg_glass w-[500px] max-[1595px]:w-full flex flex-col gap-3 text-white p-4 h-full">
       <div className=" flex flex-col">
-        <div className="text-[30px] font-semibold">Countdown </div>
-        <div className="text-[45px] font-bold">{countdown}</div>
+        <div className="text-[30px] font-semibold  max-[455px]:text-[24px]">Countdown </div>
+        <div className="text-[45px]  max-[455px]:text-[30px] font-bold">{countdown}</div>
         <div>{registrationMessage}</div>
       </div>
       <div>
         {registrationMessage === "Time until Registration Expires!" ? (
           <div className="flex items-center justify-between bg-black p-3 rounded-[16px] ">
-            <div className="text-gray-400">Click to Register Now!</div>
+            <div className="text-gray-400 max-[455px]:hidden">Click to Register Now!</div>
             <div className="flex items-center text-black w-fit bg-gray-100 h-[56px] p-4 rounded-full gap-2 ">
               <Link href={"/contact"} className="">
                 Registration
@@ -86,8 +87,8 @@ const CountdownPage = () => {
             </div>
           </div>
         ) : (
-          <div className="flex items-center justify-between bg-black p-3 rounded-[16px] ">
-            <div className="text-gray-400">Click to Submit Now!</div>
+          <div className="flex items-center  max-[455px]:flex-col  justify-between bg-black p-3 rounded-[16px] ">
+            <div className="text-gray-400 max-[455px]:hidden">Click to Submit Now!</div>
             <div className="flex items-center text-black w-fit bg-gray-100 h-[56px] p-4 rounded-full gap-2 ">
               <Link href={"/contact"} className="">
                 Submission

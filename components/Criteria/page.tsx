@@ -48,11 +48,15 @@ const BasicRules: React.FC = forwardRef<HTMLDivElement, {}>((props, ref) => {
               onClick={() => handleToggle(id)}
             >
               <div>
-                {hoveredOption === id ? (
-                  <div className="text-[12px]">Click to Close</div>
-                ) : (
-                  <div className="text-[12px]">Click to Open</div>
-                )}
+              {hoveredOption === id ? (
+                <>
+                <div className="text-[12px] max-[450px]:hidden">Click to Close</div>
+                <div className="text-[12px] min-[450px]:hidden"> Close</div>
+                </>  ) : (
+                  <>
+                <div className="text-[12px] max-[450px]:hidden">Click to Open</div>
+                <div className="text-[12px] min-[450px]:hidden"> Open</div>
+                </>  )}
               </div>
               <div className="flex items-center gap-2">
                 <span
@@ -60,29 +64,29 @@ const BasicRules: React.FC = forwardRef<HTMLDivElement, {}>((props, ref) => {
                 >
                   {id}
                 </span>
-                <span className="font-semibold text-[18px]">{title}</span>
+                <span className="font-semibold text-[18px] max-[455px]:text-[15px]">{title}</span>
               </div>
             </div>
             {hoveredOption === id && (
+        <div
+          className={`${styles.bounds} absolute top-[-75%]   z-[10000] mt-2 animate-fade-up`}
+        >
+          <Magnetic>
+            <div
+              ref={ref}
+              className={`${styles.bounds} bg-black text-white p-2 rounded-md max-w-[500px] max-[420px]:w-[250px] flex items-center gap-3 `}
+              onClick={() => handleToggle(id)}
+            >
               <div
-                className={`${styles.bounds} absolute top-[-75%]   z-[10000] mt-2 animate-fade-up`}
+                className={`rounded-full text-black h-6 w-6 bg-white text-center cursor-pointer`}
               >
-                <Magnetic>
-                  <div
-                    ref={ref}
-                    className={`${styles.bounds} bg-black text-white p-2 rounded-md max-w-[500px] flex items-center gap-3 `}
-                    onClick={() => handleToggle(id)}
-                  >
-                    <div
-                      className={`rounded-full text-black h-6 w-6 bg-white text-center cursor-pointer`}
-                    >
-                      {id}
-                    </div>
-                    <div className="w-[300px] break-words">{content}</div>
-                  </div>
-                </Magnetic>
+                {id}
               </div>
-            )}
+              <div className="w-[300px] break-words text-[15px] max-[420px]:w-[200px]">{content}</div>
+            </div>
+          </Magnetic>
+        </div>
+      )}
           </div>
         ))}
       </div>
@@ -90,8 +94,7 @@ const BasicRules: React.FC = forwardRef<HTMLDivElement, {}>((props, ref) => {
         <div className="text-[18px]  font-bold">Note:</div>
         <div className="text-[15px]">
           Please remember that functionality carries the most weight at 40%,
-          followed by innovation (20%), technical complexity (15%), and
-          scalability/security/documentation/presentation/adherence, each
+          followed by innovation (20%), technical complexity (15%), and, each
           accounting for 10%. Best of luck!
         </div>
       </div>

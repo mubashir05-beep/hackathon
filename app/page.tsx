@@ -1,12 +1,14 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { Suspense, useEffect, useRef } from "react";
 import ShortEncouragementPage from "@/components/ShortEncouragement/Page";
 import Theme from "@/components/Theme/page";
 import StickyMouse from "@/components/StickyCursor/page";
 import Criteria from "@/components/Criteria/page";
 import BasicRules from "@/components/Rules/page";
 import Countdown from "@/components/Countdown/page";
+import Credits from '@/components/Credits/page'
 
+import Loading from "./loading";
 const Home = () => {
   useEffect(() => {
     const videoElement = document.getElementsByTagName("video")[0];
@@ -36,16 +38,20 @@ const Home = () => {
         <div className="flex flex-col gap-4 top-24 absolute  min-[1595px]:bottom-6 pb-6  min-[1595px]:justify-center  w-screen px-6">
           <div className="flex  max-[1595px]:flex-col h-fit gap-4">
             <Theme />
-            <div className="flex gap-4 max-[1595px]:flex-col  ">
+            <div className="flex gap-4 max-[1595px]:flex-col  max-[1595px]:hidden  ">
               <BasicRules />
               <Criteria />
             </div>
           </div>
           <div className="flex  max-[1595px]:flex-col-reverse h-fit gap-4">
             <ShortEncouragementPage />
-            <div className="flex gap-4  max-[990px]:flex-col  ">
+            <div className="flex gap-4  max-[1595px]:flex-col  ">
               <Countdown />
-              <Countdown />
+              <Credits />
+              <div className="hidden gap-4 max-[1595px]:flex-col  max-[1595px]:flex  ">
+              <BasicRules />
+              <Criteria />
+            </div>
             </div>
           </div>
         </div>

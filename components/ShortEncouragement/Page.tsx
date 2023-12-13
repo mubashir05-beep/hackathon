@@ -39,8 +39,8 @@ const ShortEncouragementPage = forwardRef<HTMLDivElement, {}>((props, ref) => {
 
   return (
     <div className="flex flex-col gap-4 w-full bg_glass p-4">
-      <div className="flex flex-col gap-1 pt-2">
-        <div className="flex text-[18px] text-white font-extrabold">
+      <div className="flex flex-col gap-4 pt-2">
+        <div className="flex text-2xl text-white font-semibold">
           Why join us?
         </div>
         {
@@ -52,11 +52,15 @@ const ShortEncouragementPage = forwardRef<HTMLDivElement, {}>((props, ref) => {
         onClick={() => handleToggle(id)}
       >
         <div>
-          {hoveredOption === id ? (
-            <div className="text-[12px]">Click to Close</div> 
-          ) : (
-            <div className="text-[12px]">Click to Open</div> 
-          )}
+        {hoveredOption === id ? (
+                <>
+                <div className="text-[12px] max-[450px]:hidden">Click to Close</div>
+                <div className="text-[12px] min-[450px]:hidden"> Close</div>
+                </>  ) : (
+                  <>
+                <div className="text-[12px] max-[450px]:hidden">Click to Open</div>
+                <div className="text-[12px] min-[450px]:hidden"> Open</div>
+                </>  )}
         </div>
         <div className="flex items-center gap-2">
           <span
@@ -64,7 +68,7 @@ const ShortEncouragementPage = forwardRef<HTMLDivElement, {}>((props, ref) => {
           >
             {id}
           </span>
-          <span className="font-semibold text-[18px]">{title}</span>
+          <span className="font-semibold text-[18px] max-[455px]:text-[15px]">{title}</span>
         </div>
       </div>
       {hoveredOption === id && (
@@ -74,7 +78,7 @@ const ShortEncouragementPage = forwardRef<HTMLDivElement, {}>((props, ref) => {
           <Magnetic>
             <div
               ref={ref}
-              className={`${styles.bounds} bg-black text-white p-2 rounded-md max-w-[500px] flex items-center gap-3 `}
+              className={`${styles.bounds} bg-black text-white p-2 rounded-md max-w-[500px] max-[420px]:w-[250px] flex items-center gap-3 `}
               onClick={() => handleToggle(id)}
             >
               <div
@@ -82,7 +86,7 @@ const ShortEncouragementPage = forwardRef<HTMLDivElement, {}>((props, ref) => {
               >
                 {id}
               </div>
-              <div className="w-[300px] break-words">{content}</div>
+              <div className="w-[300px] break-words text-[15px] max-[420px]:w-[200px]">{content}</div>
             </div>
           </Magnetic>
         </div>
