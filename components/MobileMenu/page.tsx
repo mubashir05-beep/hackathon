@@ -40,7 +40,7 @@ const Page = () => {
     await dispatch(toggleOption());
   };
   return (
-    <div className="bg-white fixed animate-fade animate-duration-[900ms] animate-delay-900 animate-ease-linear animate-fill-both top-0 px-4 -z-10  py-28 left-0 right-0 bottom-0">
+    <div className="bg-white fixed duration-700 ease-in-out  transition-all rounded-xl animate-delay-900 animate-ease-linear animate-fill-both top-4 px-4 -z-10  py-28 max-[800px]:right-0 max-[800px]:left-0 max-[800px]:bottom-0 max-[800px]:top-0  right-[16px]">
       <div className="flex flex-col gap-4">
         {OPTIONS.map(({ id, title, link }) => {
           handlePathName(id, link);
@@ -49,7 +49,7 @@ const Page = () => {
               {selectedOption === id ? (
                 <Link
                   href={`/${link}`}
-                  className="flex items-center animate-pulse   animate-duration-400 animate-ease-linear animate-fill-both rounded bg-black text-white py-4 px-2 "
+                  className="flex items-center animate-pulse   animate-duration-700 animate-ease-linear animate-fill-both rounded bg-black text-white py-4 px-2 "
                 >
                   <Link
                     href={`/${link}`}
@@ -92,9 +92,9 @@ const Page = () => {
                 </Link>
               )}
             </React.Fragment>
-          );  
+          );
         })}
-        <div className="flex items-center gap-2 mt-8 justify-center">
+        <div className="flex gap-4 mt-8  items-center ">
           <div className="flex items-center bg-gray-100 h-[56px] p-4 rounded-full gap-2">
             <div>Contact</div>
 
