@@ -1,4 +1,4 @@
-"use client";
+
 
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import React, { useState, forwardRef } from "react";
