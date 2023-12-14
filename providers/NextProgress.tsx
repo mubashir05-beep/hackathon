@@ -1,18 +1,18 @@
-'use client';
+"use client";
 
-import { AppProgressBar as ProgressBar } from 'next-nprogress-bar';
+import { AppProgressBar as ProgressBar } from "next-nprogress-bar";
 
 const ProvidersLoading = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
-      {children}
       <ProgressBar
-        height="4px"
-        color='black'
-       
+        height="3px"
+        
         options={{ showSpinner: false }}
         shallowRouting
-      />
+        style={'z-index:99999999999'}
+      />{" "}
+      {children}
     </>
   );
 };

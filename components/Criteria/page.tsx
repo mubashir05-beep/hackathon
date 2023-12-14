@@ -8,7 +8,7 @@ interface Option {
   title: string;
   content: string;
 }
-const BasicRules: React.FC = forwardRef<HTMLDivElement, {}>((props, ref) => {
+const Criteria: React.FC = forwardRef<HTMLDivElement, {}>((props, ref) => {
   const OPTIONS: Option[] = [
     {
       id: 1,
@@ -101,5 +101,5 @@ const BasicRules: React.FC = forwardRef<HTMLDivElement, {}>((props, ref) => {
     </div>
   );
 });
-
-export default BasicRules;
+Criteria.displayName = 'BasicRules';
+export default Criteria;

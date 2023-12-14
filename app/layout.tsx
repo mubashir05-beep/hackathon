@@ -6,7 +6,6 @@ const inter = Inter({ subsets: ["latin"] });
 import Provider from "@/slices/Providers";
 import ProvidersLoading from "@/providers/NextProgress";
 
-
 export const metadata: Metadata = {
   title: "InnoJam 2023",
   description:
@@ -18,7 +17,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  
   return (
     <html lang="en">
       <body className={inter.className}>
