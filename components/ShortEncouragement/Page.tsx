@@ -98,5 +98,5 @@ const ShortEncouragementPage = forwardRef<HTMLDivElement, {}>((props, ref) => {
     </div>
   );
 });
-
+ShortEncouragementPage.displayName = 'ShortEncouragementPage';
 export default ShortEncouragementPage;

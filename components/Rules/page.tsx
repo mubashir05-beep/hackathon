@@ -107,5 +107,5 @@ const BasicRules: React.FC = forwardRef<HTMLDivElement, {}>((props, ref) => {
     </div>
   );
 });
-
+BasicRules.displayName = 'BasicRules';
 export default BasicRules;
