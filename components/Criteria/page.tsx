@@ -101,5 +101,5 @@ const Criteria: React.FC = forwardRef<HTMLDivElement, {}>((props, ref) => {
     </div>
   );
 });
-Criteria.displayName = 'BasicRules';
+Criteria.displayName = 'Criteria';
 export default Criteria;

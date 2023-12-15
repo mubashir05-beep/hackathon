@@ -28,6 +28,7 @@ yarn-error.log*
 # local env files
 .env*.local
 
+.env
 # vercel
 .vercel
 
@@ -41,3 +42,4 @@ videos/*
 !videos/*.js
 !videos/*.ts
 public/_next-video
+
