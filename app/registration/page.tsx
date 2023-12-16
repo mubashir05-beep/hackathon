@@ -7,20 +7,18 @@ const page = () => {
   return (
     <>
       <div className=" w-full absolute top-0 bottom-0 left-0 right-0 px-2 gap-8 bg-black flex items-center justify-center">
-        {/* <video
-          autoPlay
-          loop
-          muted
-          className="  "
-          style={{ height: `calc(100% - 1rem)` }}
-        >
-          <source src="/assets/registration.mp4" type="video/mp4" />
-        </video> */}
+
 
         <Video
           src={Hero}
+          autoPlay
+          muted
+          loop
+        className=" object-cover  rounded-lg"
+        style={{ width: `calc(100% - 1rem)`, height: `calc(100% - 1rem)` }}
+          controls={false}
           
-        />
+      ></Video>
 
         <form className=" mx-4 w-1/2">
           <div className="flex items-center flex-col gap-4">
