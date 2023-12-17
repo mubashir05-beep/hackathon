@@ -88,5 +88,7 @@ body {
   transform-origin: top;
 }
 
-
+.video{
+  object-fit: cover;
+}
 

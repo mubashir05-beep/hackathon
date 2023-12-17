@@ -12,14 +12,15 @@ const page = () => {
           autoPlay
           muted
           loop
-          className=" object-cover   rounded-lg"
+          className=" object-cover fixed rounded-lg"
           style={{ width: `calc(100% - 1rem)`, height: `calc(100% - 1rem)` }}
+    
           controls={false}
         />
 
         <form className=" mx-4 w-1/2">
           <div className="flex items-center flex-col gap-4">
-            <div className="flex items-center justify-center gap-3">
+            <div className="flex  justify-center gap-3">
               <div className="relative z-0  w-full mb-5 group">
                 <input
                   type="text"
@@ -36,17 +37,17 @@ const page = () => {
                   Team Name
                 </label>
               </div>
-              <div className="flex items-center mb-5 gap-1">
+              <div className="flex items-center relative z-0  w-full group mb-5 gap-4">
                 <input
                   type="text"
-                  className="block py-2.5 px-0  text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  className="block py-2.5 px-0 w-[22px] text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder="XX"
                   required
                 />
-                <div className="text-white w-full ">-Arid-</div>
+                <div className="text-white item-center">Arid</div>
                 <input
                   type="text"
-                  className="block py-2.5 px-0 text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  className="block py-2.5 px-0 text-sm w-[37px] text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder="XXXX"
                   required
                 />
