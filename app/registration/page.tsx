@@ -1,20 +1,35 @@
 "use client";
-import React from "react";
-import Steps from "@/components/HeroSteps/page";
-import Encourage from "@/components/Encouragement/page";
+import React, { useEffect } from "react";
 
-import { CldVideoPlayer } from 'next-cloudinary';
-
+import { CldVideoPlayer } from "next-cloudinary";
 const page = () => {
+  useEffect(() => {
+    const videoElement = document.getElementsByTagName("video")[0];
+    const handleVideoEnded = () => {
+      videoElement.load();
+      videoElement.play();
+    };
+    videoElement.addEventListener("ended", handleVideoEnded);
+    return () => {
+      videoElement.removeEventListener("ended", handleVideoEnded);
+    };
+  }, []);
   return (
     <>
       <div className=" w-full absolute top-0 bottom-0 left-0 right-0 px-2 gap-8 bg-black flex items-center justify-center">
-        <CldVideoPlayer  id="duj9xqxpc" width="1920" height="1080" autoPlay="always"   controls={false } muted={false }  loop={false } src="yz3yg9hfeqzs7pjihzr3" />
+        
 
-        <form className=" mx-4 w-1/2">
+        <video
+          autoPlay
+          loop
+          muted
+          className="object-cover w-full rounded-lg"
+          style={{ height: `calc(100% - 1rem)` }}
+        >
+          <source src="https://res.cloudinary.com/duj9xqxpc/video/upload/q_auto/vc_vp9/yz3yg9hfeqzs7pjihzr3.webm?_s=vp-1.10.1" />
+        </video>
+        <form className=" mx-4 w-full">
           <div className="flex items-center flex-col gap-4">
-          
-
             <div className="relative z-0 w-full mb-5 group">
               <input
                 type="tel"

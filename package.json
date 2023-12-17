@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev & npx next-video sync -w",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -11,7 +11,6 @@
   "dependencies": {
     "@prisma/client": "^5.7.0",
     "@reduxjs/toolkit": "^2.0.0",
-
     "cloudinary-video-player": "^1.10.2",
     "framer-motion": "^10.16.15",
     "next": "14.0.4",
