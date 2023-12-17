@@ -22,8 +22,8 @@ const Page = () => {
     setInputValue(e.target.value);
   };
 
-  const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && inputValue.trim() !== "") {
+  const handleAddTag = () => {
+    if (inputValue.trim() !== "") {
       setTags([...tags, inputValue.trim()]);
       setInputValue("");
     }
@@ -50,45 +50,7 @@ const Page = () => {
 
         <div className=" mx-4 w-full">
           {" "}
-        
           <form className=" mx-4 w-full">
-          <div className="flex flex-col">
-            <div className="relative z-0 w-full mb-5 group">
-              <input
-                type="text"
-                value={inputValue}
-                onChange={handleInputChange}
-                onKeyDown={handleInputKeyDown}
-                placeholder=""
-                name="floating_Team_Name"
-                id="floating_Team_Name"
-                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-white peer"
-                required
-              />
-              <label
-                htmlFor="floating_Team_Name"
-                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-              >
-                Team Members(Press Enter to add!)
-              </label>
-            </div>
-            {tags && (
-              <div className="flex  w-full">
-                <div className="text-white">Tags</div>
-                {tags.map((tag, index) => (
-                  <div
-                    key={index}
-                    className="bg-blue-500 text-white rounded px-2 py-1 m-1"
-                  >
-                    <div>{tag}</div>
-                    <button className="ml-2" onClick={() => removeTag(index)}>
-                      x
-                    </button>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
             <div className="flex items-center flex-col gap-4">
               {/* Team Info */}
               <div className="flex items-center  gap-5 w-full">
@@ -125,7 +87,53 @@ const Page = () => {
                   </label>
                 </div>
               </div>
+              <div className="flex flex-col w-full gap-4">
+                <div className="relative z-0 w-full mb-5 group">
+                  <input
+                    type="text"
+                    value={inputValue}
+                    onChange={handleInputChange}
+                    placeholder=""
+                    name="floating_Team_Name"
+                    id="floating_Team_Name"
+                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-white peer"
+                    required
+                  />
+                  <label
+                    htmlFor="floating_Team_Name"
+                    className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                  >
+                    Team Members(Click "Add" to add!)
+                  </label>
 
+                  <button
+                    type="button"
+                    onClick={handleAddTag}
+                    className="absolute right-2 top-2 px-2 py-1 text-white text-[14px]"
+                  >
+                    Add
+                  </button>
+                </div>
+                {tags.length > 0 && (
+                  <div className="flex items-center gap-4">
+                    <div className="text-gray-400 ">Members:</div>
+                    {tags.map((tag, index) => (
+                      <div
+                        key={index}
+                        className="bg-white flex items-center gap-2 text-black rounded px-2 py-1 m-1"
+                      >
+                        <div className="text-[15px]">{tag}</div>
+                        <button
+                          className="border-black border rounded"
+                          onClick={() => removeTag(index)}
+                        >
+                          x
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
               {/* Leader Info */}
               <div className="flex items-center  gap-5 w-full">
                 <div className="relative z-0 w-full mb-5 group">
