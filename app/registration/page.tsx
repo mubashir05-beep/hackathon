@@ -2,23 +2,20 @@ import React from "react";
 import Steps from "@/components/HeroSteps/page";
 import Encourage from "@/components/Encouragement/page";
 import Video from "next-video";
-import Hero from "@/videos/registration.mp4";
+import Hero from "@/videos/Registration_Hero.mp4";
 const page = () => {
   return (
     <>
       <div className=" w-full absolute top-0 bottom-0 left-0 right-0 px-2 gap-8 bg-black flex items-center justify-center">
-
-
         <Video
           src={Hero}
           autoPlay
           muted
           loop
-        className=" object-cover  rounded-lg"
-        style={{ width: `calc(100% - 1rem)`, height: `calc(100% - 1rem)` }}
+          className=" object-cover   rounded-lg"
+          style={{ width: `calc(100% - 1rem)`, height: `calc(100% - 1rem)` }}
           controls={false}
-          
-      ></Video>
+        />
 
         <form className=" mx-4 w-1/2">
           <div className="flex items-center flex-col gap-4">
