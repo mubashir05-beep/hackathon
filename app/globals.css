@@ -87,8 +87,10 @@ body {
   background: red;
   transform-origin: top;
 }
+.video {
+  position: absolute;
 
-.video{
+  height: 100%;
+  width: 100%;
   object-fit: cover;
 }
-
