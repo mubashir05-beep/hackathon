@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 
 import { CldVideoPlayer } from "next-cloudinary";
-const page = () => {
+const Page = () => {
   useEffect(() => {
     const videoElement = document.getElementsByTagName("video")[0];
     const handleVideoEnded = () => {
@@ -61,4 +61,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
