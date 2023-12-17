@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { RxCross2 } from "react-icons/rx";
 
 import { CldVideoPlayer } from "next-cloudinary";
 const Page = () => {
@@ -117,20 +118,22 @@ const Page = () => {
                 {tags.length > 0 && (
                   <div className="flex items-center gap-4">
                     <div className="text-gray-400 ">Members:</div>
+                    <div className="max-w-[600px] flex flex-wrap items-center gap-2">
                     {tags.map((tag, index) => (
                       <div
                         key={index}
-                        className="bg-white flex items-center gap-2 text-black rounded px-2 py-1 m-1"
+                        className="bg-white flex items-center gap-2  text-black rounded px-2 py-1 m-1"
                       >
                         <div className="text-[15px]">{tag}</div>
                         <button
-                          className="border-black border rounded"
+                          className="border-black border  rounded-xl hover:bg-white hover:text-black"
                           onClick={() => removeTag(index)}
                         >
-                          x
+                          <RxCross2/>
                         </button>
                       </div>
                     ))}
+                    </div>
                   </div>
                 )}
               </div>
