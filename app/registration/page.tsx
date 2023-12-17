@@ -18,7 +18,8 @@ const Page = () => {
     <>
       <div className=" w-full absolute top-0 bottom-0 left-0 right-0 px-2 gap-8 bg-black flex items-center justify-center">
         
-
+    {/* <CldVideoPlayer  src="c3rpanrl9y5wwbs9ljdi" width="1920"
+  height="1080"/> */}
         <video
           autoPlay
           loop
