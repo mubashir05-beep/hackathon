@@ -4,8 +4,8 @@ import Link from "next/link";
 import { FiExternalLink } from "react-icons/fi";
 
 const CountdownPage = () => {
-  const registrationEndDate = new Date("December 11, 2023 09:50:00").getTime();
-  const submissionStartDate = new Date("December 11, 2023 09:55:50").getTime();
+  const registrationEndDate = new Date("December 31, 2023 09:50:00").getTime();
+  const submissionStartDate = new Date("December 1, 2024 09:55:50").getTime();
   const submissionEndDate = submissionStartDate + 2 * 24 * 60 * 60 * 1000; // 2 days in milliseconds
 
   const [countdown, setCountdown] = useState(countdownTo(registrationEndDate));
