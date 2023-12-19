@@ -81,7 +81,7 @@ const Page = () => {
 
           <div className="text-[15px]">
             Kindly share information to the best of your knowledge, focusing
-            solely on the names of participants. Only the team leader's Arid-ID,
+            solely on the names of participants. Only the team leader&apos;s Arid-ID,
             contact information, and class/section is necessary.
           </div>
         </div>
