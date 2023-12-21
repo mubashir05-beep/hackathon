@@ -49,7 +49,7 @@ const Page = () => {
               {selectedOption === id ? (
                 <Link
                   href={`/${link}`}
-                  aria-disabled={disable}
+
                   className="flex items-center animate-pulse   animate-duration-700 animate-ease-linear animate-fill-both rounded bg-black text-white py-4 px-2 "
                 >
                   <Link
@@ -72,7 +72,7 @@ const Page = () => {
               ) : (
                 <Link
                   href={`/${link}`}
-                  aria-disabled={disable}
+                  // aria-disabled={disable}
                   className="flex items-center   border-y py-4 px-2"
                 >
                   <Link
