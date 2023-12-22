@@ -5,12 +5,12 @@ import { AppProgressBar as ProgressBar } from "next-nprogress-bar";
 const ProvidersLoading = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
-     <ProgressBar
+      <ProgressBar
         height="8px"
-        color="#fffd00"
         options={{ showSpinner: false }}
         shallowRouting
-      />
+        style={'z-index:99999999999'}
+      />{" "}
       {children}
     </>
   );

@@ -63,7 +63,7 @@ const Page = () => {
   };
   return (
     <>
-      <div className="bg-black h-[8px] w-screen top-0 left-0 right-0 fixed z-[10000000]"></div>
+      <div className="bg-black h-[8px] w-screen bottom-0 left-0 z-[5] right-0 fixed "></div>
       <div className=" w-full  absolute top-0 bottom-0 left-0 right-0 px-2  max-[1024px]:flex-col-reverse bg-black flex items-center justify-center">
         <video
           autoPlay
@@ -304,7 +304,7 @@ const Page = () => {
         </form>
       </div>
 
-      <div className="bg-black h-[8px] w-screen bottom-0 left-0 right-0 fixed z-[10000000]"></div>
+      <div className="bg-black h-[8px] w-screen bottom-0 left-0 z-[5] right-0 fixed "></div>
     </>
   );
 };

@@ -7,15 +7,15 @@ import { GrAggregate } from "react-icons/gr";
 import { FaPeopleGroup } from "react-icons/fa6";
 import { toggleOption } from "@/slices/menuSlice";
 const Page = () => {
-  useEffect(() => {
-    // Disable scrolling on mount
-    document.body.style.overflow = "hidden";
+  // useEffect(() => {
+  //   // Disable scrolling on mount
+  //   document.body.style.overflow = "hidden";
 
-    // Re-enable scrolling on unmount
-    return () => {
-      document.body.style.overflow = "visible";
-    };
-  }, []);
+  //   // Re-enable scrolling on unmount
+  //   return () => {
+  //     document.body.style.overflow = "visible";
+  //   };
+  // }, []);
 
   const OPTIONS = [
     { id: 1, title: "Overview & Details", link: "" },
