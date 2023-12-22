@@ -24,7 +24,7 @@ const Home = () => {
   const stickyElement = useRef(null);
   return (
     <>
-    <div className="bg-black h-[8px] w-screen top-0 left-0 right-0 fixed z-[10000000]"></div>
+    <div className="bg-black h-[8px] w-screen top-0 left-0 right-0 fixed z-[5]"></div>
       <div className="flex items-center flex-col  absolute  top-0 bottom-0 left-0 right-0 justify-center ">
         <video
           autoPlay
@@ -35,7 +35,7 @@ const Home = () => {
         >
           <source src="https://res.cloudinary.com/duj9xqxpc/video/upload/q_auto/vc_vp9/c3rpanrl9y5wwbs9ljdi.webm?_s=vp-1.10.1"  />
         </video>
-        <div className="flex flex-col gap-4 top-24 absolute  min-[1595px]:bottom-6 pb-6  min-[1595px]:justify-center  w-screen px-6">
+        <div className="flex flex-col gap-4 top-24 absolute  min-[1595px]:bottom-6 pb-6  min-[1595px]:justify-center  px-6">
           <div className="flex  max-[1595px]:flex-col h-fit gap-4">
             <Theme />
             <div className="flex gap-4 max-[1595px]:flex-col  max-[1595px]:hidden  ">
@@ -56,7 +56,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="bg-black h-[8px] w-screen bottom-0 left-0 right-0 fixed z-[10000000]"></div>
+      <div className="bg-black h-[8px] w-screen bottom-0 left-0 z-[5] right-0 fixed "></div>
       <StickyMouse stickyElement={stickyElement} />
     </>
   );

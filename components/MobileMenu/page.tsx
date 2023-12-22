@@ -40,7 +40,7 @@ const Page = () => {
     await dispatch(toggleOption());
   };
   return (
-    <div className="bg-white fixed duration-700 ease-in-out  transition-all rounded-xl animate-delay-900 animate-ease-linear animate-fill-both top-4 px-4 -z-10  py-28 max-[800px]:right-0 max-[800px]:left-0 max-[800px]:bottom-0 max-[800px]:top-0  right-[16px]">
+    <div className="bg-white fixed duration-700 ease-in-out  transition-all min-[800px]:rounded-xl animate-delay-900 animate-ease-linear animate-fill-both top-4 px-4 -z-10  py-28 max-[800px]:right-0 max-[800px]:left-0 max-[800px]:bottom-0 max-[800px]:top-0  right-[16px]">
       <div className="flex flex-col gap-4">
         {OPTIONS.map(({ id, title, link }) => {
           handlePathName(id, link);
