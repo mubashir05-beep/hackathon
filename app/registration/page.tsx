@@ -2,6 +2,23 @@
 import React, { useEffect, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { CiCircleInfo } from "react-icons/ci";
+import * as z from "zod";
+const RegistrationSchema = z.object({
+  TeamName: z.string().min(1, "TeamName is required"),
+  TeamMembersList: z.array(z.string()),
+  leaderName: z.string().min(1, "LeaderName is required"),
+  leaderArid: z.string().min(1, "LeaderArid is required"),
+  leaderPhone: z
+    .string()
+    .refine((value) => value !== "", { message: "LeaderPhone is required" }),
+  leaderEmail: z
+    .string()
+    .email()
+    .refine((value) => value !== "", { message: "LeaderEmail is required" }),
+  leaderSection: z
+    .string()
+    .refine((value) => value !== "", { message: "LeaderSection is required" }),
+});
 
 const Page = () => {
   useEffect(() => {
@@ -44,22 +61,58 @@ const Page = () => {
     newTags.splice(index, 1);
     setTags(newTags);
   };
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const parsedValues = RegistrationSchema.parse(formValues);
+
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    // Basic form validation
-
-    // Add more validation for other fields as needed
-
-    // If all validation passes, you can submit the form
-    console.log("Form submitted with values:", formValues);
+  
+    try {
+      const formData = new FormData();
+      formData.append('TeamName', parsedValues.TeamName);
+      formData.append('TeamMembersList', parsedValues.TeamMembersList.join(',')); 
+      formData.append('leaderName', parsedValues.leaderName);
+      formData.append('leaderArid', parsedValues.leaderArid);
+      formData.append('leaderPhone', parsedValues.leaderPhone);
+      formData.append('leaderEmail', parsedValues.leaderEmail);
+      formData.append('leaderSection', parsedValues.leaderSection);
+  
+      await sendEmail(formData);
+      console.log("Form submitted with values:", parsedValues);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        // If there's a validation error, log the details
+        console.error("Validation error:", error.errors);
+      } else {
+        // Handle other types of errors here if needed
+        console.error("Error submitting form:", error);
+      }
+    }
   };
+  
 
   const handleFormValueChange = (field: string, value: string) => {
     setFormValues((prevValues) => ({
       ...prevValues,
       [field]: value,
     }));
+  };
+
+  const sendEmail = async (data: FormData) => {
+    try {
+      const response = await fetch("/api/registration", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to send email");
+      }
+    } catch (error) {
+      throw new Error("Error sending email");
+    }
   };
   return (
     <>
@@ -81,8 +134,8 @@ const Page = () => {
 
           <div className="text-[15px]">
             Kindly share information to the best of your knowledge, focusing
-            solely on the names of participants. Only the team leader&apos;s Arid-ID,
-            contact information, and class/section is necessary.
+            solely on the names of participants. Only the team leader&apos;s
+            Arid-ID, contact information, and class/section is necessary.
           </div>
         </div>
         <form
@@ -150,7 +203,6 @@ const Page = () => {
                   name="floating_Team_Name"
                   id="floating_Team_Name"
                   className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 max-[1024px]:border-white border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-white peer"
-                  
                 />
                 <label
                   htmlFor="floating_Team_Name"
