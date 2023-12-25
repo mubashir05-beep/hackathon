@@ -40,7 +40,7 @@ export const POST = async (req: Request, res: Response) => {
       section,
     } = body;
 
-    const existingTeam = await prisma.teamData.findFirst({
+    const existingTeam = await prisma.TeamData.findFirst({
       where: {
         leaderName: leaderName,
         teamName: teamName,
@@ -58,7 +58,7 @@ export const POST = async (req: Request, res: Response) => {
       );
     }
 
-    const newRegistration = await prisma.teamData.create({
+    const newRegistration = await prisma.TeamData.create({
       data: {
         teamName,
         teamMembers,
