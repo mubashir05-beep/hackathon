@@ -1,12 +1,3 @@
-/*
-  Warnings:
-
-  - You are about to drop the `TeamData` table. If the table is not empty, all the data it contains will be lost.
-
-*/
--- DropTable
-DROP TABLE "TeamData";
-
 -- CreateTable
 CREATE TABLE "teamData" (
     "id" SERIAL NOT NULL,
