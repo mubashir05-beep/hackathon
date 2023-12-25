@@ -4,28 +4,22 @@ import nodemailer from "nodemailer";
 import * as z from "zod";
 import Mail from "nodemailer/lib/mailer";
 
-const RegistrationSchema = z.object({
-  TeamName: z.string().min(1, "TeamName is required"),
-  TeamMembersList: z.array(z.string()),
-  leaderName: z.string().min(1, "LeaderName is required"),
-  leaderArid: z.string().min(1, "LeaderArid is required"),
-  leaderPhone: z
-    .string()
-    .refine((value) => value !== "", { message: "LeaderPhone is required" }),
-  leaderEmail: z
-    .string()
-    .email()
-    .refine((value) => value !== "", { message: "LeaderEmail is required" }),
-  leaderSection: z
-    .string()
-    .refine((value) => value !== "", { message: "LeaderSection is required" }),
+const registrationSchema = z.object({
+  teamName: z.string().min(1, "Team Name is required"),
+  teamMembers: z.array(z.string()).min(1, "Team Members is required"),
+  teamMembersNumber: z.string().min(1, "Team Members Number is required"),
+  leaderName: z.string().min(1, "Leader Name is required"),
+  section: z.string().min(1, "Section is required"),
+  aridNumber: z.string().min(1, "Arid Number is required"),
+  email: z.string().email("Invalid email format").min(1, "Email is required"),
+  phoneNumber: z.string().min(1, "Phone Number is required"),
 });
 
 export const POST = async (req: Request, res: Response) => {
   try {
     const body = await req.json();
 
-    RegistrationSchema.parse(body);
+    registrationSchema.parse(body);
 
     const transport = nodemailer.createTransport({
       service: "gmail",
@@ -36,20 +30,21 @@ export const POST = async (req: Request, res: Response) => {
     });
 
     const {
-      TeamName,
-      TeamMembersList,
+      teamName,
+      teamMembers,
+      teamMembersNumber,
       leaderName,
-      leaderArid,
-      leaderPhone,
-      leaderEmail,
-      leaderSection,
+      aridNumber,
+      phoneNumber,
+      email,
+      section,
     } = body;
 
     const existingTeam = await prisma.teamData.findFirst({
       where: {
         leaderName: leaderName,
-        TeamName: TeamName,
-        leaderEmail: leaderEmail,
+        teamName: teamName,
+        email: email,
       },
     });
 
@@ -65,13 +60,14 @@ export const POST = async (req: Request, res: Response) => {
 
     const newRegistration = await prisma.teamData.create({
       data: {
-        TeamName,
-        TeamMembersList,
+        teamName,
+        teamMembers,
+        teamMembersNumber,
         leaderName,
-        leaderArid,
-        leaderPhone,
-        leaderEmail,
-        leaderSection,
+        aridNumber,
+        phoneNumber,
+        email,
+        section,
       },
     });
 
@@ -81,7 +77,7 @@ export const POST = async (req: Request, res: Response) => {
         "contact.muhammadmubashir@gmail.com",
         "saifullah.akhtar13@gmail.com",
       ],
-      subject: `Message from ${leaderName} (${leaderEmail})`,
+      subject: `Message from ${leaderName} (${email})`,
       text: "",
     };
 
@@ -98,7 +94,7 @@ export const POST = async (req: Request, res: Response) => {
 
     console.log("New registration created:", newRegistration);
 
-    await sendMailPromise();
+    // await sendMailPromise();
 
     return NextResponse.json(
       { team: newRegistration, message: "User created successfully!" },
@@ -108,6 +104,7 @@ export const POST = async (req: Request, res: Response) => {
     console.error("Error creating team registration:", error);
 
     if (error instanceof z.ZodError) {
+      console.error("Validation error details:", error.errors);
       return NextResponse.json(
         { message: "Validation error", details: error.errors },
         { status: 400 }
@@ -115,7 +112,7 @@ export const POST = async (req: Request, res: Response) => {
     }
 
     return NextResponse.json(
-      { message: "An error occurred while processing the request." },
+      { message: "An error occurred while processing the request.", error },
       { status: 502 }
     );
   }

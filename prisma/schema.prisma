@@ -11,15 +11,16 @@ datasource db {
 }
 
 model TeamData {
-  id              Int      @id @default(autoincrement())
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-  TeamName        String
-  TeamMembersList String[]
-  leaderName      String
-  leaderArid      String
-  leaderPhone     String?
-  leaderEmail     String?
-  leaderSection   String?
-  published       Boolean  @default(false)
+  id                Int      @id @default(autoincrement())
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  teamName          String
+  teamMembers       String[]
+  teamMembersNumber String
+  leaderName        String
+  aridNumber        String
+  phoneNumber       String?
+  email             String?
+  section           String?
+  published         Boolean  @default(false)
 }

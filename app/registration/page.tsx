@@ -3,21 +3,27 @@ import React, { useEffect, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { CiCircleInfo } from "react-icons/ci";
 import * as z from "zod";
-const RegistrationSchema = z.object({
-  TeamName: z.string().min(1, "TeamName is required"),
-  TeamMembersList: z.array(z.string()),
-  leaderName: z.string().min(1, "LeaderName is required"),
-  leaderArid: z.string().min(1, "LeaderArid is required"),
-  leaderPhone: z
-    .string()
-    .refine((value) => value !== "", { message: "LeaderPhone is required" }),
-  leaderEmail: z
-    .string()
-    .email()
-    .refine((value) => value !== "", { message: "LeaderEmail is required" }),
-  leaderSection: z
-    .string()
-    .refine((value) => value !== "", { message: "LeaderSection is required" }),
+
+interface FormValues {
+  teamName: string;
+  teamMembers: string[];
+  teamMembersNumber: string;
+  leaderName: string;
+  section: string;
+  aridNumber: string;
+  email: string;
+  phoneNumber: string;
+}
+
+const registrationSchema = z.object({
+  teamName: z.string().min(1, "Team Name is required"),
+  teamMembers: z.array(z.string()).min(1, "Team Members is required"),
+  teamMembersNumber: z.string().min(1, "Team Members Number is required"),
+  leaderName: z.string().min(1, "Leader Name is required"),
+  section: z.string().min(1, "Section is required"),
+  aridNumber: z.string().min(1, "Arid Number is required"),
+  email: z.string().email("Invalid email format").min(1, "Email is required"),
+  phoneNumber: z.string().min(1, "Phone Number is required"),
 });
 
 const Page = () => {
@@ -32,11 +38,25 @@ const Page = () => {
       videoElement.removeEventListener("ended", handleVideoEnded);
     };
   }, []);
+  useEffect(() => {
+    const videoElement = document.getElementsByTagName("video")[0];
+    const handleVideoEnded = () => {
+      videoElement.load();
+      videoElement.play();
+    };
+    videoElement.addEventListener("ended", handleVideoEnded);
+    return () => {
+      videoElement.removeEventListener("ended", handleVideoEnded);
+    };
+  }, []);
+
+  // State for tags and form
   const [tags, setTags] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState<string>("");
-  const [formValues, setFormValues] = useState({
+  const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({});
+  const [formValues, setFormValues] = useState<FormValues>({
     teamName: "",
-    teamMembers: "",
+    teamMembers: [],
     teamMembersNumber: "",
     leaderName: "",
     section: "",
@@ -45,59 +65,72 @@ const Page = () => {
     phoneNumber: "",
   });
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
-  };
-
-  const handleAddTag = () => {
-    if (inputValue.trim() !== "") {
-      setTags([...tags, inputValue.trim()]);
+  // Add tag to the tags array
+  const handleAddTag = (value: string) => {
+    if (value.trim() !== "") {
+      setTags((prevTags) => [...prevTags, value]);
       setInputValue("");
+      setFormValues((prevValues) => ({
+        ...prevValues,
+        teamMembers: [...prevValues.teamMembers, value],
+      }));
     }
   };
 
+  // Remove tag from the tags array
   const removeTag = (index: number) => {
     const newTags = [...tags];
     newTags.splice(index, 1);
     setTags(newTags);
   };
-  const parsedValues = RegistrationSchema.parse(formValues);
 
-  const handleFormSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-  
-    try {
-      const formData = new FormData();
-      formData.append('TeamName', parsedValues.TeamName);
-      formData.append('TeamMembersList', parsedValues.TeamMembersList.join(',')); 
-      formData.append('leaderName', parsedValues.leaderName);
-      formData.append('leaderArid', parsedValues.leaderArid);
-      formData.append('leaderPhone', parsedValues.leaderPhone);
-      formData.append('leaderEmail', parsedValues.leaderEmail);
-      formData.append('leaderSection', parsedValues.leaderSection);
-  
-      await sendEmail(formData);
-      console.log("Form submitted with values:", parsedValues);
-    } catch (error) {
-      if (error instanceof z.ZodError) {
-        // If there's a validation error, log the details
-        console.error("Validation error:", error.errors);
-      } else {
-        // Handle other types of errors here if needed
-        console.error("Error submitting form:", error);
-      }
-    }
-  };
-  
-
+  // Handle form field value change
   const handleFormValueChange = (field: string, value: string) => {
     setFormValues((prevValues) => ({
       ...prevValues,
       [field]: value,
     }));
+    try {
+      registrationSchema.parse(formValues);
+      setFormErrors({});
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        const fieldErrors: { [key: string]: string } = {};
+        error.errors.forEach((err) => {
+          const path = err.path.join(".");
+          fieldErrors[path] = err.message;
+        });
+        setFormErrors(fieldErrors);
+      }
+    }
   };
 
-  const sendEmail = async (data: FormData) => {
+  // Handle team members input change
+  const handleTeamMembersChange = (value: string) => {
+    setInputValue(value);
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const parsedValues = registrationSchema.parse(formValues);
+      console.log("Parsed Values:", parsedValues);
+      await sendData(parsedValues);
+      // Handle form submission logic (e.g., send data to the server)
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        const fieldErrors: { [key: string]: string } = {};
+        error.errors.forEach((err) => {
+          const path = err.path.join(".");
+          fieldErrors[path] = err.message;
+        });
+        setFormErrors(fieldErrors);
+      }
+    }
+  };
+
+  const sendData = async (data: FormValues) => {
     try {
       const response = await fetch("/api/registration", {
         method: "POST",
@@ -114,6 +147,7 @@ const Page = () => {
       throw new Error("Error sending email");
     }
   };
+
   return (
     <>
       <div className="bg-black h-[8px] w-screen bottom-0 left-0 z-[5] right-0 fixed "></div>
@@ -140,7 +174,7 @@ const Page = () => {
         </div>
         <form
           className=" max-[1024px]:absolute max-[1024px]:top-24   w-full  text-white p-6 "
-          onSubmit={handleFormSubmit}
+          onSubmit={handleSubmit}
         >
           <div className="flex flex-col bg_glass p-4 gap-6">
             <div className="flex-col gap-2 pb-4 flex">
@@ -196,8 +230,8 @@ const Page = () => {
                   type="text"
                   value={inputValue}
                   onChange={(e) => {
-                    handleFormValueChange("teamMembers", e.target.value);
-                    handleInputChange(e);
+                    setInputValue(e.target.value);
+                    handleTeamMembersChange(e.target.value);
                   }}
                   placeholder=""
                   name="floating_Team_Name"
@@ -215,7 +249,7 @@ const Page = () => {
 
                 <button
                   type="button"
-                  onClick={handleAddTag}
+                  onClick={() => handleAddTag(inputValue)}
                   className="absolute right-2 top-2 px-2 py-1 text-white text-[14px]"
                 >
                   Add
