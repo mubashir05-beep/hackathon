@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { CiCircleInfo } from "react-icons/ci";
 import * as z from "zod";
+import toast from "react-hot-toast";
 
 interface FormValues {
   teamName: string;
@@ -38,22 +39,18 @@ const Page = () => {
       videoElement.removeEventListener("ended", handleVideoEnded);
     };
   }, []);
-  useEffect(() => {
-    const videoElement = document.getElementsByTagName("video")[0];
-    const handleVideoEnded = () => {
-      videoElement.load();
-      videoElement.play();
-    };
-    videoElement.addEventListener("ended", handleVideoEnded);
-    return () => {
-      videoElement.removeEventListener("ended", handleVideoEnded);
-    };
-  }, []);
 
   // State for tags and form
   const [tags, setTags] = useState<string[]>([]);
+
   const [inputValue, setInputValue] = useState<string>("");
+
   const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({});
+
+  const [isFormValid, setIsFormValid] = useState<boolean>(false);
+
+  const [processing, setProcessing] = useState<boolean>(false);
+
   const [formValues, setFormValues] = useState<FormValues>({
     teamName: "",
     teamMembers: [],
@@ -65,7 +62,41 @@ const Page = () => {
     phoneNumber: "",
   });
 
-  // Add tag to the tags array
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormValues((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+
+    const errors: { [key: string]: string } = { ...formErrors };
+
+    if (name === "teamName" && !value.trim()) {
+      errors.teamName = "required";
+    } else if (name === "teamMembers" && !value.trim()) {
+      errors.teamMembers = "required";
+    } else if (name === "teamMembersNumber" && !value.trim()) {
+      errors.teamMembersNumber = "required";
+    } else if (name === "leaderName" && !value.trim()) {
+      errors.leaderName = "Invalid email format";
+    } else if (name === "section" && !value.trim()) {
+      errors.section = "required";
+    } else if (name === "aridNumber" && !value.trim()) {
+      errors.aridNumber = "required";
+    } else if (name === "email" && !isValidEmail(value)) {
+      errors.email = "required";
+    } else if (name === "phoneNumber" && !value.trim()) {
+      errors.phoneNumber = "required";
+    } else {
+      delete errors[name];
+    }
+
+    setFormErrors(errors);
+    setIsFormValid(Object.keys(errors).length === 0);
+  };
+
   const handleAddTag = (value: string) => {
     if (value.trim() !== "") {
       setTags((prevTags) => [...prevTags, value]);
@@ -77,55 +108,55 @@ const Page = () => {
     }
   };
 
-  // Remove tag from the tags array
   const removeTag = (index: number) => {
     const newTags = [...tags];
     newTags.splice(index, 1);
     setTags(newTags);
-  };
 
-  // Handle form field value change
-  const handleFormValueChange = (field: string, value: string) => {
+    // Update teamMembers array in formValues
     setFormValues((prevValues) => ({
       ...prevValues,
-      [field]: value,
+      teamMembers: newTags,
     }));
-    try {
-      registrationSchema.parse(formValues);
-      setFormErrors({});
-    } catch (error) {
-      if (error instanceof z.ZodError) {
-        const fieldErrors: { [key: string]: string } = {};
-        error.errors.forEach((err) => {
-          const path = err.path.join(".");
-          fieldErrors[path] = err.message;
-        });
-        setFormErrors(fieldErrors);
-      }
-    }
   };
 
-  // Handle team members input change
-  const handleTeamMembersChange = (value: string) => {
-    setInputValue(value);
+  const isValidEmail = (email: string): boolean => {
+    // Email validation regex
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
   };
 
-  // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    try {
-      const parsedValues = registrationSchema.parse(formValues);
-      console.log("Parsed Values:", parsedValues);
-      await sendData(parsedValues);
-      // Handle form submission logic (e.g., send data to the server)
-    } catch (error) {
-      if (error instanceof z.ZodError) {
-        const fieldErrors: { [key: string]: string } = {};
-        error.errors.forEach((err) => {
-          const path = err.path.join(".");
-          fieldErrors[path] = err.message;
+    if (isFormValid) {
+      setProcessing(true);
+      try {
+        const parsedValues = await registrationSchema.parse(formValues);
+        console.log("Parsed Values:", parsedValues);
+        await sendData(parsedValues);
+        await setFormValues({
+          teamName: "",
+          teamMembers: [],
+          teamMembersNumber: "",
+          leaderName: "",
+          section: "",
+          aridNumber: "",
+          email: "",
+          phoneNumber: "",
         });
-        setFormErrors(fieldErrors);
+        await setTags([]);
+        toast.success("Registration Complete!");
+      } catch (error) {
+        toast.error("Error sending email!");
+        if (error instanceof z.ZodError) {
+          const fieldErrors: { [key: string]: string } = {};
+          error.errors.forEach((err) => {
+            const path = err.path.join(".");
+            fieldErrors[path] = err.message;
+          });
+        }
+      } finally {
+        setProcessing(false);
       }
     }
   };
@@ -188,17 +219,19 @@ const Page = () => {
               <div className="relative z-0 w-full mb-5 group">
                 <input
                   type="text"
-                  name="floating_Team_Name"
-                  id="floating_Team_Name"
-                  className="block py-2.5 px-0 w-full max-[] text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white max-[1024px]:border-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-white peer"
+                  name="teamName"
+                  id="teamName"
+                  // Inside the input elements
+                  className={`block py-2.5 px-0 w-full text-sm text-white bg-transparent ${
+                    formErrors.teamName ? "border-red-500" : ""
+                  } border-0 border-b-2 max-[1024px]:border-white border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-white peer`}
                   placeholder=" "
                   required
-                  onChange={(e) =>
-                    handleFormValueChange("teamName", e.target.value)
-                  }
+                  value={formValues.teamName}
+                  onChange={handleChange}
                 />
                 <label
-                  htmlFor="floating_Team_Name"
+                  htmlFor="teamName"
                   className="peer-focus:font-medium absolute text-sm text-gray-500 max-[1024px]:text-white dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                 >
                   Team Name
@@ -207,17 +240,18 @@ const Page = () => {
               <div className="relative z-0 w-2/6 max-[600px]:w-full mb-5 group">
                 <input
                   type="text"
-                  name="floating_Team_Member"
-                  id="floating_Team_Member"
-                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 max-[1024px]:border-white border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-white peer"
+                  name="teamMembersNumber"
+                  id="teamMembersNumber"
+                  className={`block py-2.5 px-0 w-full text-sm text-white bg-transparent ${
+                    formErrors.teamMembersNumber ? "border-red-500" : ""
+                  } border-0 border-b-2 max-[1024px]:border-white border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-white peer`}
                   placeholder=" "
                   required
-                  onChange={(e) =>
-                    handleFormValueChange("teamMembersNumber", e.target.value)
-                  }
+                  value={formValues.teamMembersNumber}
+                  onChange={handleChange}
                 />
                 <label
-                  htmlFor="floating_Team_Member"
+                  htmlFor="teamMembersNumber"
                   className="peer-focus:font-medium absolute text-sm text-gray-500 max-[1024px]:text-white dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                 >
                   Team Members
@@ -229,17 +263,16 @@ const Page = () => {
                 <input
                   type="text"
                   value={inputValue}
-                  onChange={(e) => {
-                    setInputValue(e.target.value);
-                    handleTeamMembersChange(e.target.value);
-                  }}
+                  onChange={(e) => setInputValue(e.target.value)}
                   placeholder=""
-                  name="floating_Team_Name"
-                  id="floating_Team_Name"
-                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 max-[1024px]:border-white border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-white peer"
+                  name="teamMembers"
+                  id="teamMembers"
+                  className={`block py-2.5 px-0 w-full text-sm text-white bg-transparent ${
+                    formErrors.teamMembers ? "border-red-500" : ""
+                  } border-0 border-b-2 max-[1024px]:border-white border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-white peer`}
                 />
                 <label
-                  htmlFor="floating_Team_Name"
+                  htmlFor="teamMembers"
                   className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 max-[1024px]:text-white duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                 >
                   {tags.length > 0
@@ -249,7 +282,10 @@ const Page = () => {
 
                 <button
                   type="button"
-                  onClick={() => handleAddTag(inputValue)}
+                  onClick={() => {
+                    handleAddTag(inputValue);
+                    setInputValue(""); // Clear input value after adding tag
+                  }}
                   className="absolute right-2 top-2 px-2 py-1 text-white text-[14px]"
                 >
                   Add
@@ -279,22 +315,24 @@ const Page = () => {
                 </div>
               )}
             </div>
+
             {/* Leader Info */}
             <div className="flex items-center max-[600px]:flex-col  gap-5 w-full">
               <div className="relative z-0 w-full mb-5 group">
                 <input
                   type="text"
-                  name="floating_Leader_Name"
-                  id="floating_Leader_Name"
-                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent max-[1024px]:border-white border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-white peer"
+                  name="leaderName"
+                  id="leaderName"
+                  className={`block py-2.5 px-0 w-full text-sm text-white bg-transparent ${
+                    formErrors.leaderName ? "border-red-500" : ""
+                  } border-0 border-b-2 max-[1024px]:border-white border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-white peer`}
                   placeholder=" "
                   required
-                  onChange={(e) =>
-                    handleFormValueChange("leaderName", e.target.value)
-                  }
+                  value={formValues.leaderName}
+                  onChange={handleChange}
                 />
                 <label
-                  htmlFor="floating_Leader_Name"
+                  htmlFor="leaderName"
                   className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white max-[1024px]:text-white peer-focus:dark:border-white peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                 >
                   Leader Name
@@ -303,17 +341,18 @@ const Page = () => {
               <div className="relative z-0 w-full mb-5 group">
                 <input
                   type="text"
-                  name="floating_Section"
-                  id="floating_Section"
-                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent max-[1024px]:border-white border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-white peer"
+                  name="section"
+                  id="section"
+                  className={`block py-2.5 px-0 w-full text-sm text-white bg-transparent ${
+                    formErrors.section ? "border-red-500" : ""
+                  } border-0 border-b-2 max-[1024px]:border-white border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-white peer`}
                   placeholder=" "
                   required
-                  onChange={(e) =>
-                    handleFormValueChange("section", e.target.value)
-                  }
+                  value={formValues.section}
+                  onChange={handleChange}
                 />
                 <label
-                  htmlFor="floating_Section"
+                  htmlFor="section"
                   className="peer-focus:font-medium absolute text-sm max-[1024px]:text-white text-gray-500 dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                 >
                   Section
@@ -322,17 +361,18 @@ const Page = () => {
               <div className="relative z-0 w-full mb-5 group">
                 <input
                   type="text"
-                  name="floating_Arid"
-                  id="floating_Arid"
-                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 max-[1024px]:border-white border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-white peer"
+                  name="aridNumber"
+                  id="aridNumber"
+                  className={`block py-2.5 px-0 w-full text-sm text-white bg-transparent ${
+                    formErrors.aridNumber ? "border-red-500" : ""
+                  } border-0 border-b-2 max-[1024px]:border-white border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-white peer`}
                   placeholder=" "
                   required
-                  onChange={(e) =>
-                    handleFormValueChange("aridNumber", e.target.value)
-                  }
+                  value={formValues.aridNumber}
+                  onChange={handleChange}
                 />
                 <label
-                  htmlFor="floating_Arid"
+                  htmlFor="aridNumber"
                   className="peer-focus:font-medium absolute text-sm text-gray-500 max-[1024px]:text-white dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                 >
                   Arid Number
@@ -344,17 +384,18 @@ const Page = () => {
               <div className="relative z-0 w-full mb-5 group">
                 <input
                   type="email"
-                  name="floating_Email"
-                  id="floating_Email"
-                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 max-[1024px]:border-white border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-white peer"
+                  name="email"
+                  id="email"
+                  className={`block py-2.5 px-0 w-full text-sm text-white bg-transparent ${
+                    formErrors.email ? "border-red-500" : ""
+                  } border-0 border-b-2 max-[1024px]:border-white border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-white peer`}
                   placeholder=" "
                   required
-                  onChange={(e) =>
-                    handleFormValueChange("email", e.target.value)
-                  }
+                  value={formValues.email}
+                  onChange={handleChange}
                 />
                 <label
-                  htmlFor="floating_Email"
+                  htmlFor="email"
                   className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 max-[1024px]:text-white duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                 >
                   Email
@@ -363,17 +404,19 @@ const Page = () => {
               <div className="relative z-0 w-full mb-5 group">
                 <input
                   type="text"
-                  name="floating_phone"
-                  id="floating_phone"
-                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 max-[1024px]:border-white border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-white peer"
+                  name="phoneNumber"
+                  id="phoneNumber"
+                  className={`block py-2.5 px-0 w-full text-sm text-white bg-transparent ${
+                    formErrors.phoneNumber ? "border-red-500" : ""
+                  } border-0 border-b-2 max-[1024px]:border-white border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-white peer`}
                   placeholder=" "
                   required
-                  onChange={(e) =>
-                    handleFormValueChange("phoneNumber", e.target.value)
-                  }
+                  value={formValues.phoneNumber}
+                  onChange={handleChange}
                 />
+
                 <label
-                  htmlFor="floating_phone"
+                  htmlFor="phoneNumber"
                   className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 max-[1024px]:text-white transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                 >
                   Phone number
@@ -382,13 +425,28 @@ const Page = () => {
             </div>
             <button
               type="submit"
-              className="block py-2.5 px-0 w-full text-sm  bg-transparent rounded-lg text-gray-400 border-2 max-[1024px]:text-white max-[1024px]:border-white border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-white peer "
+              disabled={processing || !isFormValid}
+              className={`w-full bg-black  border hover:border-white text-white px-4 py-2 rounded-md transition-colors`}
             >
-              Submit
+              {processing ? (
+                <div className="flex items-center justify-center group">
+                  <div className="rounded-full h-5 w-5 border-t-2 border-b-2 border-gray-100  animate-spin"></div>
+                  <div className="ml-2">Processing...</div>
+                </div>
+              ) : (
+                "Submit"
+              )}
             </button>
+           
+                <div className="flex items-center justify-center group">
+                  <div className="rounded-full h-5 w-5 border-t-2 border-b-2 border-gray-100  animate-spin"></div>
+                  <div className="ml-2">Processing...</div>
+                </div>
+              
           </div>
         </form>
       </div>
+      
 
       <div className="bg-black h-[8px] w-screen bottom-0 left-0 z-[5] right-0 fixed "></div>
     </>

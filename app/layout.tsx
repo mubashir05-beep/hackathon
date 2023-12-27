@@ -6,6 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 import Provider from "@/slices/Providers";
 import ProvidersLoading from "@/providers/NextProgress";
 import Head from "next/head";
+import { Toaster } from 'react-hot-toast';
 
 export const metadata: Metadata = {
   title: "InnoJam 2023",
@@ -24,6 +25,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <Provider>
           <ProvidersLoading>
+            <Toaster/>
             <div className="flex  h-screen flex-col">
               <Navbar />
               <div>{children}</div>
