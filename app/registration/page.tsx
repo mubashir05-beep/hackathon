@@ -74,21 +74,21 @@ const Page = () => {
     const errors: { [key: string]: string } = { ...formErrors };
 
     if (name === "teamName" && !value.trim()) {
-      errors.teamName = "required";
+      errors.teamName = "require";
     } else if (name === "teamMembers" && !value.trim()) {
-      errors.teamMembers = "required";
+      errors.teamMembers = "require";
     } else if (name === "teamMembersNumber" && !value.trim()) {
-      errors.teamMembersNumber = "required";
+      errors.teamMembersNumber = "require";
     } else if (name === "leaderName" && !value.trim()) {
-      errors.leaderName = "Invalid email format";
+      errors.leaderName = "require";
     } else if (name === "section" && !value.trim()) {
-      errors.section = "required";
+      errors.section = "require";
     } else if (name === "aridNumber" && !value.trim()) {
-      errors.aridNumber = "required";
+      errors.aridNumber = "require";
     } else if (name === "email" && !isValidEmail(value)) {
-      errors.email = "required";
+      errors.email = "require";
     } else if (name === "phoneNumber" && !value.trim()) {
-      errors.phoneNumber = "required";
+      errors.phoneNumber = "require";
     } else {
       delete errors[name];
     }
@@ -134,7 +134,7 @@ const Page = () => {
         const parsedValues = await registrationSchema.parse(formValues);
         console.log("Parsed Values:", parsedValues);
         await sendData(parsedValues);
-        await setFormValues({
+        setFormValues({
           teamName: "",
           teamMembers: [],
           teamMembersNumber: "",
@@ -144,7 +144,7 @@ const Page = () => {
           email: "",
           phoneNumber: "",
         });
-        await setTags([]);
+        setTags([]);
         toast.success("Registration Complete!");
       } catch (error) {
         toast.error("Error sending email!");
@@ -223,8 +223,10 @@ const Page = () => {
                   id="teamName"
                   // Inside the input elements
                   className={`block py-2.5 px-0 w-full text-sm text-white bg-transparent ${
-                    formErrors.teamName ? "border-red-500" : ""
-                  } border-0 border-b-2 max-[1024px]:border-white border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-white peer`}
+                    formErrors.teamName
+                      ? "border-red-500"
+                      : "border-gray-300 max-[1024px]:border-white "
+                  } border-0 border-b-2  appearance-none focus:outline-none focus:ring-0 focus:border-white peer`}
                   placeholder=" "
                   required
                   value={formValues.teamName}
@@ -232,9 +234,18 @@ const Page = () => {
                 />
                 <label
                   htmlFor="teamName"
-                  className="peer-focus:font-medium absolute text-sm text-gray-500 max-[1024px]:text-white dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                  className="peer-focus:font-medium absolute text-sm text-gray-500 max-[1024px]:text-white dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100  w-full peer-placeholder-shown:translate-y-0 peer-focus:text-[12px] peer-focus:-translate-y-6"
                 >
-                  Team Name
+                  {formErrors.teamName ? (
+                    <div className="flex  justify-between items-center gap-1">
+                      Team Name{" "}
+                      <div className="text-[12px] text-red-400">
+                        ({formErrors.teamName})
+                      </div>
+                    </div>
+                  ) : (
+                    "Team Name"
+                  )}
                 </label>
               </div>
               <div className="relative z-0 w-2/6 max-[600px]:w-full mb-5 group">
@@ -243,8 +254,10 @@ const Page = () => {
                   name="teamMembersNumber"
                   id="teamMembersNumber"
                   className={`block py-2.5 px-0 w-full text-sm text-white bg-transparent ${
-                    formErrors.teamMembersNumber ? "border-red-500" : ""
-                  } border-0 border-b-2 max-[1024px]:border-white border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-white peer`}
+                    formErrors.teamMembersNumber
+                      ? "border-red-500"
+                      : "border-gray-300 max-[1024px]:border-white "
+                  } border-0 border-b-2  appearance-none focus:outline-none focus:ring-0 focus:border-white peer`}
                   placeholder=" "
                   required
                   value={formValues.teamMembersNumber}
@@ -252,9 +265,18 @@ const Page = () => {
                 />
                 <label
                   htmlFor="teamMembersNumber"
-                  className="peer-focus:font-medium absolute text-sm text-gray-500 max-[1024px]:text-white dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                  className="peer-focus:font-medium absolute text-sm text-gray-500 max-[1024px]:text-white dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100  w-full peer-placeholder-shown:translate-y-0 peer-focus:text-[12px] peer-focus:-translate-y-6"
                 >
-                  Team Members
+                  {formErrors.teamMembersNumber ? (
+                    <div className="flex  justify-between items-center gap-1">
+                      Team Members{" "}
+                      <div className="text-[12px] text-red-400">
+                        ({formErrors.teamMembersNumber})
+                      </div>
+                    </div>
+                  ) : (
+                    "Team Members"
+                  )}
                 </label>
               </div>
             </div>
@@ -324,8 +346,10 @@ const Page = () => {
                   name="leaderName"
                   id="leaderName"
                   className={`block py-2.5 px-0 w-full text-sm text-white bg-transparent ${
-                    formErrors.leaderName ? "border-red-500" : ""
-                  } border-0 border-b-2 max-[1024px]:border-white border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-white peer`}
+                    formErrors.leaderName
+                      ? "border-red-500"
+                      : "border-gray-300 max-[1024px]:border-white "
+                  } border-0 border-b-2  appearance-none focus:outline-none focus:ring-0 focus:border-white peer`}
                   placeholder=" "
                   required
                   value={formValues.leaderName}
@@ -333,9 +357,18 @@ const Page = () => {
                 />
                 <label
                   htmlFor="leaderName"
-                  className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white max-[1024px]:text-white peer-focus:dark:border-white peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                  className="peer-focus:font-medium absolute text-sm text-gray-500 max-[1024px]:text-white dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100  w-full peer-placeholder-shown:translate-y-0 peer-focus:text-[12px] peer-focus:-translate-y-6"
                 >
-                  Leader Name
+                  {formErrors.leaderName ? (
+                    <div className="flex  justify-between items-center gap-1">
+                      Leader Name
+                      <div className="text-[12px] text-red-400">
+                        ({formErrors.leaderName})
+                      </div>
+                    </div>
+                  ) : (
+                    "Leader Name"
+                  )}
                 </label>
               </div>
               <div className="relative z-0 w-full mb-5 group">
@@ -344,8 +377,10 @@ const Page = () => {
                   name="section"
                   id="section"
                   className={`block py-2.5 px-0 w-full text-sm text-white bg-transparent ${
-                    formErrors.section ? "border-red-500" : ""
-                  } border-0 border-b-2 max-[1024px]:border-white border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-white peer`}
+                    formErrors.section
+                      ? "border-red-500"
+                      : "border-gray-300 max-[1024px]:border-white "
+                  } border-0 border-b-2  appearance-none focus:outline-none focus:ring-0 focus:border-white peer`}
                   placeholder=" "
                   required
                   value={formValues.section}
@@ -353,9 +388,18 @@ const Page = () => {
                 />
                 <label
                   htmlFor="section"
-                  className="peer-focus:font-medium absolute text-sm max-[1024px]:text-white text-gray-500 dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                  className="peer-focus:font-medium absolute text-sm text-gray-500 max-[1024px]:text-white dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100  w-full peer-placeholder-shown:translate-y-0 peer-focus:text-[12px] peer-focus:-translate-y-6"
                 >
-                  Section
+                  {formErrors.section ? (
+                    <div className="flex  justify-between items-center gap-1">
+                      Section
+                      <div className="text-[12px] text-red-400">
+                        ({formErrors.section})
+                      </div>
+                    </div>
+                  ) : (
+                    "Section"
+                  )}
                 </label>
               </div>
               <div className="relative z-0 w-full mb-5 group">
@@ -364,8 +408,10 @@ const Page = () => {
                   name="aridNumber"
                   id="aridNumber"
                   className={`block py-2.5 px-0 w-full text-sm text-white bg-transparent ${
-                    formErrors.aridNumber ? "border-red-500" : ""
-                  } border-0 border-b-2 max-[1024px]:border-white border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-white peer`}
+                    formErrors.aridNumber
+                      ? "border-red-500"
+                      : "border-gray-300 max-[1024px]:border-white "
+                  } border-0 border-b-2  appearance-none focus:outline-none focus:ring-0 focus:border-white peer`}
                   placeholder=" "
                   required
                   value={formValues.aridNumber}
@@ -373,9 +419,18 @@ const Page = () => {
                 />
                 <label
                   htmlFor="aridNumber"
-                  className="peer-focus:font-medium absolute text-sm text-gray-500 max-[1024px]:text-white dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                  className="peer-focus:font-medium absolute text-sm text-gray-500 max-[1024px]:text-white dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100  w-full peer-placeholder-shown:translate-y-0 peer-focus:text-[12px] peer-focus:-translate-y-6"
                 >
-                  Arid Number
+                  {formErrors.aridNumber ? (
+                    <div className="flex  justify-between items-center gap-1">
+                      Arid Number
+                      <div className="text-[12px] text-red-400">
+                        ({formErrors.aridNumber})
+                      </div>
+                    </div>
+                  ) : (
+                    "Arid Number"
+                  )}
                 </label>
               </div>
             </div>
@@ -387,8 +442,10 @@ const Page = () => {
                   name="email"
                   id="email"
                   className={`block py-2.5 px-0 w-full text-sm text-white bg-transparent ${
-                    formErrors.email ? "border-red-500" : ""
-                  } border-0 border-b-2 max-[1024px]:border-white border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-white peer`}
+                    formErrors.email
+                      ? "border-red-500"
+                      : "border-gray-300 max-[1024px]:border-white "
+                  } border-0 border-b-2  appearance-none focus:outline-none focus:ring-0 focus:border-white peer`}
                   placeholder=" "
                   required
                   value={formValues.email}
@@ -396,9 +453,18 @@ const Page = () => {
                 />
                 <label
                   htmlFor="email"
-                  className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 max-[1024px]:text-white duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                  className="peer-focus:font-medium absolute text-sm text-gray-500 max-[1024px]:text-white dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100  w-full peer-placeholder-shown:translate-y-0 peer-focus:text-[12px] peer-focus:-translate-y-6"
                 >
-                  Email
+                  {formErrors.email ? (
+                    <div className="flex  justify-between items-center gap-1">
+                      Email
+                      <div className="text-[12px] text-red-400">
+                        ({formErrors.email})
+                      </div>
+                    </div>
+                  ) : (
+                    "Email"
+                  )}
                 </label>
               </div>
               <div className="relative z-0 w-full mb-5 group">
@@ -407,8 +473,10 @@ const Page = () => {
                   name="phoneNumber"
                   id="phoneNumber"
                   className={`block py-2.5 px-0 w-full text-sm text-white bg-transparent ${
-                    formErrors.phoneNumber ? "border-red-500" : ""
-                  } border-0 border-b-2 max-[1024px]:border-white border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-white peer`}
+                    formErrors.phoneNumber
+                      ? "border-red-500"
+                      : "border-gray-300 max-[1024px]:border-white "
+                  } border-0 border-b-2  appearance-none focus:outline-none focus:ring-0 focus:border-white peer`}
                   placeholder=" "
                   required
                   value={formValues.phoneNumber}
@@ -417,9 +485,17 @@ const Page = () => {
 
                 <label
                   htmlFor="phoneNumber"
-                  className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 max-[1024px]:text-white transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                  className="peer-focus:font-medium absolute text-sm text-gray-500 max-[1024px]:text-white dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100  w-full peer-placeholder-shown:translate-y-0 peer-focus:text-[12px] peer-focus:-translate-y-6"
                 >
-                  Phone number
+                  {formErrors.phoneNumber ? (
+                    <div className="flex  justify-between items-center gap-1">
+                      Phone Number                      <div className="text-[12px] text-red-400">
+                        ({formErrors.phoneNumber})
+                      </div>
+                    </div>
+                  ) : (
+                    "Phone Number"
+                  )}
                 </label>
               </div>
             </div>
@@ -437,16 +513,9 @@ const Page = () => {
                 "Submit"
               )}
             </button>
-           
-                <div className="flex items-center justify-center group">
-                  <div className="rounded-full h-5 w-5 border-t-2 border-b-2 border-gray-100  animate-spin"></div>
-                  <div className="ml-2">Processing...</div>
-                </div>
-              
           </div>
         </form>
       </div>
-      
 
       <div className="bg-black h-[8px] w-screen bottom-0 left-0 z-[5] right-0 fixed "></div>
     </>
