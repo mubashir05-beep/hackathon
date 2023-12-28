@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import React, { useEffect, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { CiCircleInfo } from "react-icons/ci";
@@ -28,6 +28,7 @@ const registrationSchema = z.object({
 });
 
 const Page = () => {
+
   useEffect(() => {
     const videoElement = document.getElementsByTagName("video")[0];
     const handleVideoEnded = () => {
@@ -40,7 +41,6 @@ const Page = () => {
     };
   }, []);
 
-  // State for tags and form
   const [tags, setTags] = useState<string[]>([]);
 
   const [inputValue, setInputValue] = useState<string>("");
@@ -489,7 +489,8 @@ const Page = () => {
                 >
                   {formErrors.phoneNumber ? (
                     <div className="flex  justify-between items-center gap-1">
-                      Phone Number                      <div className="text-[12px] text-red-400">
+                      Phone Number{" "}
+                      <div className="text-[12px] text-red-400">
                         ({formErrors.phoneNumber})
                       </div>
                     </div>
@@ -516,7 +517,6 @@ const Page = () => {
           </div>
         </form>
       </div>
-
       <div className="bg-black h-[8px] w-screen bottom-0 left-0 z-[5] right-0 fixed "></div>
     </>
   );
