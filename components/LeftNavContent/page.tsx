@@ -10,7 +10,7 @@ const page = () => {
     >
       <div className="flex flex-col items-center ">
         <div className="">InnoJam</div>
-        <div className="text-[12px] gradient-text">2023</div>
+        <div className="text-[12px] gradient-text">2024</div>
       </div>
     </Link>
   );
