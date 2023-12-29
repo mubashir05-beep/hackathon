@@ -18,17 +18,17 @@ const EncouragementPage: React.FC = () => {
   const OPTIONS: Option[] = [
     {
       id: 1,
-      title: "Inclusive Learning:",
+      title: "Inclusive Learning",
       content: "Beginners find mentors, seniors share wisdom.",
     },
     {
       id: 2,
-      title: "Diverse Skills:",
+      title: "Diverse Skills",
       content: "All levels celebrated, from novice to pro.",
     },
     {
       id: 3,
-      title: "Collective Growth:",
+      title: "Collective Growth",
       content: "Learn, collaborate, and grow together.",
     },
   ];

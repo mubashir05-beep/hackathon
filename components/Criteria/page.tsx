@@ -12,19 +12,19 @@ const Criteria: React.FC = forwardRef<HTMLDivElement, {}>((props, ref) => {
   const OPTIONS: Option[] = [
     {
       id: 1,
-      title: "Innovation and Creativity:",
+      title: "Innovation and Creativity",
       content:
         "Originality and creativity in the participant's work or project.",
     },
     {
       id: 2,
-      title: "Technology Stack:",
+      title: "Technology Stack",
       content:
         "Effective use of a technology stack aligned with the solution, showcasing creativity across platforms.",
     },
     {
       id: 3,
-      title: "Collaborative Spirit:",
+      title: "Collaborative Spirit",
       content:
         "Fostering collaboration through shared insights and code snippets, promoting inclusivity for developers of all levels.",
     },

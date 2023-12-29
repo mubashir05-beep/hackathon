@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import Navbar from "@/components/Navbar/page";
 const inter = Inter({ subsets: ["latin"] });
 import Provider from "@/slices/Providers";
 import ProvidersLoading from "@/providers/NextProgress";
-import Head from "next/head";
 import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
-  title: "InnoJam 2023",
-  description:
-    "Unleash innovation and creativity at the InnoJam 2023. Join us for a coding extravaganza where ideas come to life!",
-};
+    title: "InnoJam 2023 - Contact",
+    description:
+      "Reach out to us and be a part of InnoJam 2023! Connect with our team, share your thoughts, and explore opportunities for collaboration. The Contact Us page is your gateway to joining the coding extravaganza. Let's innovate together!",
+  };
+  
 
 export default function RootLayout({
   children,
@@ -25,7 +25,7 @@ export default function RootLayout({
         <Provider>
           <ProvidersLoading>
             <Toaster />
-            <div className="flex  h-screen flex-col">
+            <div className="flex bg-white h-screen flex-col">
               <Navbar />
               <div>{children}</div>
             </div>

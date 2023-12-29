@@ -17,19 +17,19 @@ const ShortEncouragementPage = forwardRef<HTMLDivElement, {}>((props, ref) => {
   const OPTIONS: Option[] = [
     {
       id: 1,
-      title: "Learn and Apply:",
+      title: "Learn and Apply",
       content:
         "Gain hands-on experience in web development by tackling real-world challenges.",
     },
     {
       id: 2,
-      title: "Showcase Your Creativity:",
+      title: "Showcase Your Creativity",
       content:
         " Demonstrate your unique ideas and problem-solving skills through a beginner-friendly project.",
     },
     {
       id: 3,
-      title: "Connect with Peers:",
+      title: "Connect with Peers",
       content:
         "Engage with a supportive community of fellow beginners and experienced mentors..",
     },

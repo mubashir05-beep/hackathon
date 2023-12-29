@@ -12,19 +12,19 @@ const BasicRules: React.FC = forwardRef<HTMLDivElement, {}>((props, ref) => {
   const OPTIONS: Option[] = [
     {
       id: 1,
-      title: "Teams:",
+      title: "Teams",
       content:
         "Form interdisciplinary teams of 2 to 5 members or join individually to be matched with a team.",
     },
     {
       id: 2,
-      title: "Technology Stack:",
+      title: "Technology Stack",
       content:
         " Choose a technology stack that aligns with your solution, promoting creativity across various platforms.",
     },
     {
       id: 3,
-      title: "Open Collaboration:",
+      title: "Open Collaboration",
       content:
         "Foster collaboration by sharing insights and code snippets, whether you're a beginner or an experienced developer.",
     },

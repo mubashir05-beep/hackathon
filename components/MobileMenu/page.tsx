@@ -18,10 +18,10 @@ const Page = () => {
   // }, []);
 
   const OPTIONS = [
-    { id: 1, title: "Overview & Details", link: "" },
-    { id: 2, title: "Registration", link: "registration" },
-    { id: 3, title: "Submit Project", link: "submission" },
-    { id: 4, title: "All Projects", link: "all-projects" },
+    { id: 1, title: "Overview & Details", link: "",disable:false },
+    { id: 2, title: "Registration", link: "registration",disable:false },
+    { id: 3, title: "Submit Project", link: "submission",disable:true  },
+    { id: 4, title: "All Projects", link: "all-projects",disable:false },
   ];
 
   const pathname = usePathname();
@@ -42,13 +42,14 @@ const Page = () => {
   return (
     <div className="bg-white fixed duration-700 ease-in-out  transition-all min-[800px]:rounded-xl animate-delay-900 animate-ease-linear animate-fill-both top-4 px-4 -z-10  py-28 max-[800px]:right-0 max-[800px]:left-0 max-[800px]:bottom-0 max-[800px]:top-0  right-[16px]">
       <div className="flex flex-col gap-4">
-        {OPTIONS.map(({ id, title, link }) => {
+        {OPTIONS.map(({ id, title, link,disable }) => {
           handlePathName(id, link);
           return (
             <React.Fragment key={id}>
               {selectedOption === id ? (
                 <Link
                   href={`/${link}`}
+                  aria-disabled={disable}
                   className="flex items-center animate-pulse   animate-duration-700 animate-ease-linear animate-fill-both rounded bg-black text-white py-4 px-2 "
                 >
                   <Link
@@ -71,6 +72,7 @@ const Page = () => {
               ) : (
                 <Link
                   href={`/${link}`}
+                  aria-disabled={disable}
                   className="flex items-center   border-y py-4 px-2"
                 >
                   <Link
@@ -95,20 +97,20 @@ const Page = () => {
           );
         })}
         <div className="flex gap-4 mt-8  items-center ">
-          <div className="flex items-center bg-gray-100 h-[56px] p-4 rounded-full gap-2">
+          <Link href={'/contact'} className="flex items-center bg-gray-100 h-[56px] p-4 rounded-full gap-2">
             <div>Contact</div>
 
             <div className="bg-black text-white h-8 w-8 flex items-center justify-center rounded-full">
               <GrAggregate />
             </div>
-          </div>
-          <div className="flex items-center bg-gray-100 h-[56px]  p-4 rounded-full gap-2">
+          </Link>
+          <Link href={'/contribute'} className="flex items-center bg-gray-100 h-[56px]  p-4 rounded-full gap-2">
             <div>Contributors</div>
 
             <div className="bg-black text-white h-8 w-8 flex items-center justify-center rounded-full">
               <FaPeopleGroup />
             </div>
-          </div>
+          </Link>
         </div>
       </div>{" "}
       {menuState && (
