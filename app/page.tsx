@@ -8,7 +8,6 @@ import BasicRules from "@/components/Rules/page";
 import Countdown from "@/components/Countdown/page";
 import Credits from '@/components/Credits/page'
 
-import Loading from "./loading";
 const Home = () => {
   useEffect(() => {
     const videoElement = document.getElementsByTagName("video")[0];
