@@ -31,10 +31,10 @@ This repository houses the source code for the InnoJam 2024 website. The website
 
 ## ScreenShots 
 
-# Landing Page
+### Landing Page
 ![Screenshot 2023-12-31 at 01-10-30 InnoJam 2023](https://github.com/mubashir05-beep/hackathon/assets/100374421/cb62242d-f414-4a22-bcbc-73648e207614)
 
-# Registration Page
+### Registration Page
 ![Screenshot 2023-12-31 at 01-24-17 InnoJam 2023](https://github.com/mubashir05-beep/hackathon/assets/100374421/995e0e36-91d9-4f4c-aa95-768632276377)
 
 
