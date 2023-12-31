@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# InnoJam 2024 - BIMS Hackathon
 
-## Getting Started
+Welcome to the official GitHub repository for InnoJam 2024, the exciting hackathon hosted by BSSE-5A at BIMS! 🚀
 
-First, run the development server:
+## Live Link : https://hackathon-mu-nine.vercel.app/
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## About InnoJam 2024
+InnoJam 2024 is a dynamic hackathon where innovation meets coding prowess. Organized by the talented students of BSSE-5A at BIMS, this event brings together the brightest minds to collaborate, ideate, and create groundbreaking projects.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## What's in this Repository?
+This repository houses the source code for the InnoJam 2024 website. The website serves as the central hub for participants, providing information about the event schedule, challenges, registration details, and more. Feel free to explore the code, contribute, and make the website even more awesome!
+## Technologies Used
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Next.js:** The React framework for building efficient and scalable web applications.
+- **Typescript:** A superset of JavaScript that adds static types to the language.
+- **Redux Toolkit:** The official, opinionated, batteries-included toolset for efficient Redux development.
+- **Prisma:** A modern database toolkit for TypeScript and Node.js.
+- **Supa-Base:** The open-source Firebase alternative for Postgres. Instant, realtime, high-performance, and globally distributed.
+- **Tailwind CSS:** A utility-first CSS framework for rapidly building custom designs.
+- **NodeMailer:** A Node.js module for sending emails.
+- **Zod:** A TypeScript-first schema declaration and validation library.
+- **Framer Motion:** A library for creating smooth animations in React applications.
+- **Vercel:** Deployed with Vercel for seamless hosting and continuous deployment.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+## Features
+- **User-Friendly Design:** An intuitive and visually appealing interface for seamless navigation.
+- **Challenge Details:** Dive into the specifics of each challenge, including rules and requirements.
+- **Registration Portal:** Easy registration process for participants to join the InnoJam experience.
+- **Submission Portal:** Easy project submission process for participants.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## ScreenShots 
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Landing Page
+![Screenshot 2023-12-31 at 01-10-30 InnoJam 2023](https://github.com/mubashir05-beep/hackathon/assets/100374421/cb62242d-f414-4a22-bcbc-73648e207614)
 
-## Deploy on Vercel
+### Registration Page
+![Screenshot 2023-12-31 at 01-24-17 InnoJam 2023](https://github.com/mubashir05-beep/hackathon/assets/100374421/995e0e36-91d9-4f4c-aa95-768632276377)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Contributors
+- Muhammad Mubashir Munir Khan(@mubashir05-beep)
+- ...
+
+A big shoutout to all BSSE-5A class fellows for their dedication to making InnoJam 2024 a memorable and innovative experience! 🌟
+
+Let the coding festivities begin! Happy hacking! 🚀
