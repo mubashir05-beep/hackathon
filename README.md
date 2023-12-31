@@ -9,11 +9,11 @@ InnoJam 2024 is a dynamic hackathon where innovation meets coding prowess. Organ
 
 ## What's in this Repository?
 This repository houses the source code for the InnoJam 2024 website. The website serves as the central hub for participants, providing information about the event schedule, challenges, registration details, and more. Feel free to explore the code, contribute, and make the website even more awesome!
-
 ## Technologies Used
 
 - **Next.js:** The React framework for building efficient and scalable web applications.
 - **Typescript:** A superset of JavaScript that adds static types to the language.
+- **Redux Toolkit:** The official, opinionated, batteries-included toolset for efficient Redux development.
 - **Prisma:** A modern database toolkit for TypeScript and Node.js.
 - **Supa-Base:** The open-source Firebase alternative for Postgres. Instant, realtime, high-performance, and globally distributed.
 - **Tailwind CSS:** A utility-first CSS framework for rapidly building custom designs.
@@ -21,6 +21,7 @@ This repository houses the source code for the InnoJam 2024 website. The website
 - **Zod:** A TypeScript-first schema declaration and validation library.
 - **Framer Motion:** A library for creating smooth animations in React applications.
 - **Vercel:** Deployed with Vercel for seamless hosting and continuous deployment.
+
 
 
 ## Features
