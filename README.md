@@ -2,6 +2,8 @@
 
 Welcome to the official GitHub repository for InnoJam 2024, the exciting hackathon hosted by BSSE-5A at BIMS! 🚀
 
+## Live Link : https://hackathon-mu-nine.vercel.app/
+
 ## About InnoJam 2024
 InnoJam 2024 is a dynamic hackathon where innovation meets coding prowess. Organized by the talented students of BSSE-5A at BIMS, this event brings together the brightest minds to collaborate, ideate, and create groundbreaking projects.
 
