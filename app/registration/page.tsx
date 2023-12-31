@@ -10,6 +10,8 @@ interface FormValues {
   teamMembers: string[];
   teamMembersNumber: string;
   leaderName: string;
+  projectTitle:string,
+  projectDesc:string,
   section: string;
   aridNumber: string;
   email: string;
@@ -21,6 +23,8 @@ const registrationSchema = z.object({
   teamMembers: z.array(z.string()).min(1, "Team Members is required"),
   teamMembersNumber: z.string().min(1, "Team Members Number is required"),
   leaderName: z.string().min(1, "Leader Name is required"),
+  projectTitle: z.string().min(1, "Project Title is required"),
+  projectDesc: z.string().min(1, "Project Desc is required"),
   section: z.string().min(1, "Section is required"),
   aridNumber: z.string().min(1, "Arid Number is required"),
   email: z.string().email("Invalid email format").min(1, "Email is required"),
@@ -57,6 +61,8 @@ const Page = () => {
     teamMembersNumber: "",
     leaderName: "",
     section: "",
+    projectTitle,
+    projectDesc,
     aridNumber: "",
     email: "",
     phoneNumber: "",

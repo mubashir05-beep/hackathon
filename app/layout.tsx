@@ -25,10 +25,8 @@ export default function RootLayout({
         <Provider>
           <ProvidersLoading>
             <Toaster />
-            <div className="flex  h-screen flex-col">
               <Navbar />
               <div>{children}</div>
-            </div>
           </ProvidersLoading>
         </Provider>
       </body>
