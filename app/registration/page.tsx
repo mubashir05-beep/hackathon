@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { CiCircleInfo } from "react-icons/ci";
@@ -10,8 +10,8 @@ interface FormValues {
   teamMembers: string[];
   teamMembersNumber: string;
   leaderName: string;
-  projectTitle:string,
-  projectDesc:string,
+  projectTitle: string;
+  projectDesc: string;
   section: string;
   aridNumber: string;
   email: string;
@@ -32,7 +32,6 @@ const registrationSchema = z.object({
 });
 
 const Page = () => {
-
   useEffect(() => {
     const videoElement = document.getElementsByTagName("video")[0];
     const handleVideoEnded = () => {
@@ -61,8 +60,8 @@ const Page = () => {
     teamMembersNumber: "",
     leaderName: "",
     section: "",
-    projectTitle,
-    projectDesc,
+    projectTitle: "",
+    projectDesc: "",
     aridNumber: "",
     email: "",
     phoneNumber: "",
@@ -87,6 +86,10 @@ const Page = () => {
       errors.teamMembersNumber = "require";
     } else if (name === "leaderName" && !value.trim()) {
       errors.leaderName = "require";
+    } else if (name === "projectTitle" && !value.trim()) {
+      errors.projectTitle = "require";
+    } else if (name === "projectDesc" && !value.trim()) {
+      errors.projectDesc = "require";
     } else if (name === "section" && !value.trim()) {
       errors.section = "require";
     } else if (name === "aridNumber" && !value.trim()) {
@@ -145,6 +148,8 @@ const Page = () => {
           teamMembers: [],
           teamMembersNumber: "",
           leaderName: "",
+          projectTitle: "",
+          projectDesc: "",
           section: "",
           aridNumber: "",
           email: "",
@@ -213,7 +218,7 @@ const Page = () => {
           className=" max-[1024px]:absolute max-[1024px]:top-24   w-full  text-white p-6 "
           onSubmit={handleSubmit}
         >
-          <div className="flex flex-col bg_glass p-4 gap-6">
+          <div className="flex flex-col bg_glass p-4 gap-[14px]">
             <div className="flex-col gap-2 pb-4 flex">
               <div className=" text-[34px] font-bold">Registration form</div>
               <p className=" text-gray-400 ">
@@ -319,6 +324,7 @@ const Page = () => {
                   Add
                 </button>
               </div>
+              <div>
               {tags.length > 0 && (
                 <div className="flex min-[1024px]:items-center max-[1024px]:flex-col  gap-4">
                   <div className="text-gray-400 max-[1024px]:text-white ">
@@ -339,11 +345,75 @@ const Page = () => {
                         </button>
                       </div>
                     ))}
+                    </div>
                   </div>
-                </div>
-              )}
+               
+              )} </div>
             </div>
-
+            {/* Project Details */}
+            <div className="flex items-center max-[600px]:flex-col  gap-5 w-full">
+              <div className="relative z-0 w-full mb-5 group">
+                <input
+                  type="text"
+                  name="projectTitle"
+                  id="projectTitle"
+                  className={`block py-2.5 px-0 w-full text-sm text-white bg-transparent ${
+                    formErrors.projectTitle
+                      ? "border-red-500"
+                      : "border-gray-300 max-[1024px]:border-white "
+                  } border-0 border-b-2  appearance-none focus:outline-none focus:ring-0 focus:border-white peer`}
+                  placeholder=" "
+                  required
+                  value={formValues.projectTitle}
+                  onChange={handleChange}
+                />
+                <label
+                  htmlFor="projectTitle"
+                  className="peer-focus:font-medium absolute text-sm text-gray-500 max-[1024px]:text-white dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100  w-full peer-placeholder-shown:translate-y-0 peer-focus:text-[12px] peer-focus:-translate-y-6"
+                >
+                  {formErrors.projectTitle ? (
+                    <div className="flex  justify-between items-center gap-1">
+                      Project Title
+                      <div className="text-[12px] text-red-400">
+                        ({formErrors.projectTitle})
+                      </div>
+                    </div>
+                  ) : (
+                    "Project Title "
+                  )}
+                </label>
+              </div>
+            </div>
+            <div className="relative z-0 w-full mb-5 group">
+              <textarea
+                name="projectDesc"
+                id="projectDesc"
+                className={`block py-2.5 px-0 w-full text-sm text-white bg-transparent ${
+                  formErrors.projectDesc
+                    ? "border-red-500"
+                    : "border-gray-300 max-[1024px]:border-white "
+                } border-0 border-b-2  appearance-none focus:outline-none focus:ring-0 focus:border-white peer`}
+                placeholder=" "
+                required
+                value={formValues.projectDesc}
+                onChange={handleChange}
+              />
+              <label
+                htmlFor="projectDesc"
+                className="peer-focus:font-medium absolute text-sm text-gray-500 max-[1024px]:text-white dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100  w-full peer-placeholder-shown:translate-y-0 peer-focus:text-[12px] peer-focus:-translate-y-6"
+              >
+                {formErrors.projectDesc ? (
+                  <div className="flex  justify-between items-center gap-1">
+                    Project Desc
+                    <div className="text-[12px] text-red-400">
+                      ({formErrors.projectDesc})
+                    </div>
+                  </div>
+                ) : (
+                  "Project Desc"
+                )}
+              </label>
+            </div>
             {/* Leader Info */}
             <div className="flex items-center max-[600px]:flex-col  gap-5 w-full">
               <div className="relative z-0 w-full mb-5 group">

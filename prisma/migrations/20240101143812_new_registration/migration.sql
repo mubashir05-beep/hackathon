@@ -1,5 +1,5 @@
 -- CreateTable
-CREATE TABLE "teamData" (
+CREATE TABLE "Registration_Details" (
     "id" SERIAL NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -7,11 +7,13 @@ CREATE TABLE "teamData" (
     "teamMembers" TEXT[],
     "teamMembersNumber" TEXT NOT NULL,
     "leaderName" TEXT NOT NULL,
+    "projectTitle" TEXT NOT NULL,
+    "projectDesc" TEXT NOT NULL,
     "aridNumber" TEXT NOT NULL,
-    "phoneNumber" TEXT,
-    "email" TEXT,
-    "section" TEXT,
+    "phoneNumber" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
+    "section" TEXT NOT NULL,
     "published" BOOLEAN NOT NULL DEFAULT false,
 
-    CONSTRAINT "teamData_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "Registration_Details_pkey" PRIMARY KEY ("id")
 );
