@@ -33,7 +33,7 @@ const Home = () => {
           className="-z-10 object-cover fixed rounded-lg"
           style={{ width: `calc(100% - 1rem)`, height: `calc(100% - 1rem)` }}
         >
-          <source src="https://res.cloudinary.com/duj9xqxpc/video/upload/q_auto/vc_vp9/ujqc2goicnumsg8lebje.webm?_s=vp-1.10.1"  />
+          <source src="https://res.cloudinary.com/duj9xqxpc/video/upload/q_auto/vc_vp9/fio0elnbjaaqhfwzc1vz.webm?_s=vp-1.10.1"  />
         </video>
         <div className="flex flex-col gap-4 top-24 absolute  min-[1595px]:bottom-6 pb-6  min-[1595px]:justify-center  px-6">
           <div className="flex  max-[1595px]:flex-col h-fit gap-4">
