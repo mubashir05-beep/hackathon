@@ -325,30 +325,30 @@ const Page = () => {
                 </button>
               </div>
               <div>
-              {tags.length > 0 && (
-                <div className="flex min-[1024px]:items-center max-[1024px]:flex-col  gap-4">
-                  <div className="text-gray-400 max-[1024px]:text-white ">
-                    Members:
-                  </div>
-                  <div className="max-w-[600px] flex flex-wrap items-center gap-2">
-                    {tags.map((tag, index) => (
-                      <div
-                        key={index}
-                        className="bg-white flex items-center gap-2  text-black rounded px-2 py-1 m-1"
-                      >
-                        <div className="text-[15px]">{tag}</div>
-                        <button
-                          className="border-black border  rounded-xl hover:bg-white hover:text-black"
-                          onClick={() => removeTag(index)}
+                {tags.length > 0 && (
+                  <div className="flex min-[1024px]:items-center max-[1024px]:flex-col  gap-4">
+                    <div className="text-gray-400 max-[1024px]:text-white ">
+                      Members:
+                    </div>
+                    <div className="max-w-[600px] flex flex-wrap items-center gap-2">
+                      {tags.map((tag, index) => (
+                        <div
+                          key={index}
+                          className="bg-white flex items-center gap-2  text-black rounded px-2 py-1 m-1"
                         >
-                          <RxCross2 />
-                        </button>
-                      </div>
-                    ))}
+                          <div className="text-[15px]">{tag}</div>
+                          <button
+                            className="border-black border  rounded-xl hover:bg-white hover:text-black"
+                            onClick={() => removeTag(index)}
+                          >
+                            <RxCross2 />
+                          </button>
+                        </div>
+                      ))}
                     </div>
                   </div>
-               
-              )} </div>
+                )}{" "}
+              </div>
             </div>
             {/* Project Details */}
             <div className="flex items-center max-[600px]:flex-col  gap-5 w-full">
