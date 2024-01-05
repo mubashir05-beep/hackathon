@@ -18,7 +18,7 @@ const Page = () => {
     { id: 1, title: "Overview & Details", link: "", disable: false },
     { id: 2, title: "Registration", link: "registration", disable: false },
     { id: 3, title: "Submission", link: "submission", disable: true },
-    { id: 4, title: "All Projects", link: "all-projects", disable: false },
+    { id: 4, title: "All Projects", link: "all-projects", disable: true },
   ];
 
   const pathname = usePathname();
@@ -43,14 +43,21 @@ const Page = () => {
           handlePathName(id, link);
           return (
             <React.Fragment key={id}>
-              {selectedOption === id ? (
+              {selectedOption === id && disable != true ? (
                 <Link
                   href={`/${link}`}
-                  className="flex items-center animate-pulse   animate-duration-700 animate-ease-linear animate-fill-both rounded bg-black text-white py-4 px-2 "
+                  className={`flex items-center animate-pulse   animate-duration-700 animate-ease-linear animate-fill-both rounded bg-black text-white py-4 px-2  ${
+                    disable && "pointer-events-none"
+                  }`}
+                  onClick={() => handleOptionClick(id)}
+                  tabIndex={disable ? -1 : undefined}
                 >
                   <Link
                     href={`/${link}`}
-                    className={`rounded-full text-black h-6 w-6 bg-white text-center font-semibold cursor-pointer`}
+                    className={`rounded-full text-black h-6 w-6 bg-white text-center font-semibold cursor-pointer ${
+                      disable && "pointer-events-none"
+                    }`}
+                    tabIndex={disable ? -1 : undefined}
                     onClick={() => handleOptionClick(id)}
                   >
                     {id}
@@ -59,7 +66,11 @@ const Page = () => {
                     <Link
                       href={`/${link}`}
                       onClick={() => handleOptionClick(id)}
-                      className={` ml-3  font-semibold `}
+                      className={` ml-3  font-semibold ${
+                        disable && "pointer-events-none"
+                      }`}
+                      tabIndex={disable ? -1 : undefined}
+                      
                     >
                       {title}
                     </Link>
@@ -68,12 +79,19 @@ const Page = () => {
               ) : (
                 <Link
                   href={`/${link}`}
-                  className="flex items-center   border-y py-4 px-2"
+                  className={`flex items-center   border-y py-4 px-2 ${
+                    disable && "pointer-events-none"
+                  } ${disable? "opacity-50 rounded" :" "}` }
+                  tabIndex={disable ? -1 : undefined}
+                  onClick={() => handleOptionClick(id)}
                 >
                   <Link
                     href={`/${link}`}
-                    className={`rounded-full text-white h-6 w-6 bg-black text-center cursor-pointer`}
+                    className={`rounded-full text-white h-6 w-6 bg-black text-center cursor-pointer ${
+                      disable && "pointer-events-none"
+                    }`}
                     onClick={() => handleOptionClick(id)}
+                    tabIndex={disable ? -1 : undefined}
                   >
                     {id}
                   </Link>
@@ -81,7 +99,10 @@ const Page = () => {
                     <Link
                       href={`/${link}`}
                       onClick={() => handleOptionClick(id)}
-                      className={` ml-3 font-semibold `}
+                      className={` ml-3 font-semibold  ${
+                        disable && "pointer-events-none"
+                      }`}
+                      tabIndex={disable ? -1 : undefined}
                     >
                       {title}
                     </Link>
@@ -95,6 +116,9 @@ const Page = () => {
           <Link
             href={"/contact"}
             className="flex items-center bg-gray-100 h-[56px] p-4 rounded-full gap-2"
+            onClick={() => {
+              dispatch(toggleOption());
+            }}
           >
             <div>Contact</div>
 
@@ -105,6 +129,9 @@ const Page = () => {
           <Link
             href={"/contribute"}
             className="flex items-center bg-gray-100 h-[56px]  p-4 rounded-full gap-2"
+            onClick={() => {
+              dispatch(toggleOption());
+            }}
           >
             <div>Contributors</div>
 

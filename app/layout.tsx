@@ -9,7 +9,7 @@ import Head from "next/head";
 import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
-  title: "InnoJam 2023",
+  title: "InnoJam 2024",
   description:
     "Unleash innovation and creativity at the InnoJam 2023. Join us for a coding extravaganza where ideas come to life!",
 };
