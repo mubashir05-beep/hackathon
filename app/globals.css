@@ -34,9 +34,7 @@ input:-webkit-autofill:active {
   height: 8px;
 }
 
-body {
-  background: #000;
-}
+
 
 .bg-highlight {
   background-color: #fc0e0e;
@@ -100,3 +98,26 @@ body {
   width: 100%;
   object-fit: cover;
 }
+
+
+.bg_glass_registration {
+  /* From https://css.glass */
+  background: rgba(0, 0, 0, 0.144);
+  border-radius: 16px;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8.6px);
+  -webkit-backdrop-filter: blur(8.6px);
+}
+
+@media screen and (max-width:1024px) {
+  .bg_glass_registration {
+    /* From https://css.glass */
+    background: rgba(0, 0, 0, 0.144);
+    border-radius: 16px;
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8.6px);
+    -webkit-backdrop-filter: blur(8.6px);
+  }
+  
+}
+

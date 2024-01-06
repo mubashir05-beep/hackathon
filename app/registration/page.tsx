@@ -192,8 +192,8 @@ const Page = () => {
 
   return (
     <>
-      <div className="bg-black h-[8px] w-screen bottom-0 left-0 z-[5] right-0 fixed "></div>
-      <div className=" w-full  absolute top-0 bottom-0 left-0 right-0 px-2  max-[1024px]:flex-col-reverse bg-black flex items-center justify-center">
+      <div className="bg-white h-[8px] w-screen bottom-0 left-0 top-0 z-[5] right-0 fixed "></div>
+      <div className=" w-full  absolute top-0 bottom-0 left-0 right-0 px-2  max-[1024px]:flex-col-reverse bg-white flex items-center justify-center">
         <video
           autoPlay
           loop
@@ -201,9 +201,9 @@ const Page = () => {
           className="object-cover max-[1024px]:fixed w-full rounded-lg"
           style={{ width: `calc(100% - 1rem)`, height: `calc(100% - 1rem)` }}
         >
-          <source src="https://res.cloudinary.com/duj9xqxpc/video/upload/q_auto/vc_vp9/yz3yg9hfeqzs7pjihzr3.webm?_s=vp-1.10.1" />
+          <source src="https://res.cloudinary.com/duj9xqxpc/video/upload/q_auto/vc_vp9/frzzyqnilaopos09agha.webm?_s=vp-1.10.1" />
         </video>
-        <div className="bg-black  max-[1024px]:hidden min-[1024px]:absolute flex items-center gap-4 p-4 min-[1024px]:max-w-[40%] mx-6 bg_glass bottom-6 left-6 text-white">
+        <div className="bg-white  max-[1024px]:hidden min-[1024px]:absolute flex items-center gap-4 p-4 min-[1024px]:max-w-[40%] mx-6 bg_glass bottom-6 left-6 text-black">
           <div>
             <CiCircleInfo size={30} />
           </div>
@@ -215,13 +215,13 @@ const Page = () => {
           </div>
         </div>
         <form
-          className=" max-[1024px]:absolute max-[1024px]:top-24   w-full  text-white p-6 "
+          className=" max-[1024px]:absolute max-[1024px]:top-24   w-full  text-black p-6 "
           onSubmit={handleSubmit}
         >
-          <div className="flex flex-col bg_glass p-4 gap-[14px]">
+          <div className="flex flex-col   p-4 gap-[14px]">
             <div className="flex-col gap-2 pb-4 flex">
-              <div className=" text-[34px] font-bold">Registration form</div>
-              <p className=" text-gray-400 ">
+              <div className=" text-[34px] text-black font-bold">Registration form</div>
+              <p className=" text-gray-500 ">
                 Lock in Your Spot: Register Now!
               </p>
             </div>
@@ -593,7 +593,7 @@ const Page = () => {
           </div>
         </form>
       </div>
-      <div className="bg-black h-[8px] w-screen bottom-0 left-0 z-[5] right-0 fixed "></div>
+      <div className="bg-white h-[8px] w-screen bottom-0 left-0 z-[5] right-0 fixed "></div>
     </>
   );
 };
