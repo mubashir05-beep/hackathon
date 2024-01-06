@@ -5,7 +5,7 @@ import Navbar from "@/components/Navbar/page";
 const inter = Inter({ subsets: ["latin"] });
 import Provider from "@/slices/Providers";
 import ProvidersLoading from "@/providers/NextProgress";
-import Head from "next/head";
+
 import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
@@ -25,8 +25,8 @@ export default function RootLayout({
         <Provider>
           <ProvidersLoading>
             <Toaster />
-              <Navbar />
-              <div>{children}</div>
+            <Navbar />
+            <div>{children}</div>
           </ProvidersLoading>
         </Provider>
       </body>

@@ -1,8 +1,7 @@
 // Menu.tsx
 "use client";
 import { toggleOption } from "@/slices/menuSlice";
-import Link from "next/link";
-import React, { useState } from "react";
+import React from "react";
 import { TbMenuDeep } from "react-icons/tb";
 import { useDispatch, useSelector } from "react-redux";
 import { GrFormClose } from "react-icons/gr";
@@ -11,7 +10,7 @@ import MobileMenu from "@/components/MobileMenu/page";
 const Menu = () => {
   const dispatch = useDispatch();
   const menuState = useSelector((state: any) => state.menutoggle.value); // Corrected selector
- 
+
   return (
     <>
       <div
