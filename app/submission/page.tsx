@@ -194,7 +194,7 @@ const Page = () => {
   return (
     <>
       <div className="bg-white h-[8px] w-screen bottom-0 left-0 top-0 z-[5] right-0 fixed "></div>
-      <div className=" w-full  absolute top-0 bottom-0 left-0 right-0 px-2  max-[1024px]:flex-col-reverse bg-white flex items-center justify-center">
+      <div className=" w-full  absolute top-0 bottom-0 left-0 right-0 flex-row-reverse px-2  max-[1024px]:flex-col-reverse bg-white flex items-center justify-center">
         <video
           autoPlay
           loop
