@@ -102,19 +102,19 @@ input:-webkit-autofill:active {
 
 .bg_glass_registration {
   /* From https://css.glass */
-  background: rgba(0, 0, 0, 0.144);
+  background: rgba(255, 255, 255, 0.144);
   border-radius: 16px;
   box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(8.6px);
   -webkit-backdrop-filter: blur(8.6px);
 }
 
-@media screen and (max-width:1024px) {
+@media screen and (min-width:1024px) {
   .bg_glass_registration {
     /* From https://css.glass */
-    background: rgba(0, 0, 0, 0.144);
+    background: rgba(255, 255, 255, 0.144);
     border-radius: 16px;
-    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 30px rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(8.6px);
     -webkit-backdrop-filter: blur(8.6px);
   }

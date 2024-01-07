@@ -203,7 +203,7 @@ const Page = () => {
         >
           <source src="https://res.cloudinary.com/duj9xqxpc/video/upload/q_auto/vc_vp9/frzzyqnilaopos09agha.webm?_s=vp-1.10.1" />
         </video>
-        <div className="bg-white  max-[1024px]:hidden min-[1024px]:absolute flex items-center gap-4 p-4 min-[1024px]:max-w-[40%] mx-6 bg_glass bottom-6 left-6 text-black">
+        <div className="bg-white  max-[1024px]:hidden min-[1024px]:absolute flex items-center gap-4 p-4 min-[1024px]:max-w-[40%] mx-6 bg_glass bottom-6 left-6 text-white">
           <div>
             <CiCircleInfo size={30} />
           </div>
@@ -218,10 +218,12 @@ const Page = () => {
           className=" max-[1024px]:absolute max-[1024px]:top-24   w-full  text-black p-6 "
           onSubmit={handleSubmit}
         >
-          <div className="flex flex-col   p-4 gap-[14px]">
+          <div className="flex flex-col bg_glass_registration  p-4 gap-[14px]">
             <div className="flex-col gap-2 pb-4 flex">
-              <div className=" text-[34px] text-black font-bold">Registration form</div>
-              <p className=" text-gray-500 ">
+              <div className=" text-[34px] text-black font-bold">
+                Registration form
+              </div>
+              <p className=" text-gray-500 max-[1024px]:text-black ">
                 Lock in Your Spot: Register Now!
               </p>
             </div>
@@ -233,11 +235,11 @@ const Page = () => {
                   name="teamName"
                   id="teamName"
                   // Inside the input elements
-                  className={`block py-2.5 px-0 w-full text-sm text-white bg-transparent ${
+                  className={`block py-2.5 px-0 w-full text-sm text-black bg-transparent ${
                     formErrors.teamName
                       ? "border-red-500"
-                      : "border-gray-300 max-[1024px]:border-white "
-                  } border-0 border-b-2  appearance-none focus:outline-none focus:ring-0 focus:border-white peer`}
+                      : " max-[1024px]:border-black border-gray-400"
+                  } border-0 border-b-2 appearance-none   focus:outline-none focus:ring-0 focus:border-black peer`}
                   placeholder=" "
                   required
                   value={formValues.teamName}
@@ -245,7 +247,7 @@ const Page = () => {
                 />
                 <label
                   htmlFor="teamName"
-                  className="peer-focus:font-medium absolute text-sm text-gray-500 max-[1024px]:text-white dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100  w-full peer-placeholder-shown:translate-y-0 peer-focus:text-[12px] peer-focus:-translate-y-6"
+                  className="peer-focus:font-medium absolute text-sm text-gray-500 max-[1024px]:text-black dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100  w-full peer-placeholder-shown:translate-y-0 peer-focus:text-[12px] peer-focus:-translate-y-6"
                 >
                   {formErrors.teamName ? (
                     <div className="flex  justify-between items-center gap-1">
@@ -264,11 +266,11 @@ const Page = () => {
                   type="text"
                   name="teamMembersNumber"
                   id="teamMembersNumber"
-                  className={`block py-2.5 px-0 w-full text-sm text-white bg-transparent ${
+                  className={`block py-2.5 px-0 w-full text-sm text-black bg-transparent ${
                     formErrors.teamMembersNumber
                       ? "border-red-500"
-                      : "border-gray-300 max-[1024px]:border-white "
-                  } border-0 border-b-2  appearance-none focus:outline-none focus:ring-0 focus:border-white peer`}
+                      : " max-[1024px]:border-black border-gray-400"
+                  } border-0 border-b-2 appearance-none   focus:outline-none focus:ring-0 focus:border-black peer`}
                   placeholder=" "
                   required
                   value={formValues.teamMembersNumber}
@@ -276,7 +278,7 @@ const Page = () => {
                 />
                 <label
                   htmlFor="teamMembersNumber"
-                  className="peer-focus:font-medium absolute text-sm text-gray-500 max-[1024px]:text-white dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100  w-full peer-placeholder-shown:translate-y-0 peer-focus:text-[12px] peer-focus:-translate-y-6"
+                  className="peer-focus:font-medium absolute text-sm text-gray-500 max-[1024px]:text-black duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100  w-full peer-placeholder-shown:translate-y-0 peer-focus:text-[12px] peer-focus:-translate-y-6"
                 >
                   {formErrors.teamMembersNumber ? (
                     <div className="flex  justify-between items-center gap-1">
@@ -300,13 +302,13 @@ const Page = () => {
                   placeholder=""
                   name="teamMembers"
                   id="teamMembers"
-                  className={`block py-2.5 px-0 w-full text-sm text-white bg-transparent ${
+                  className={`block py-2.5 px-0 w-full text-sm text-black bg-transparent ${
                     formErrors.teamMembers ? "border-red-500" : ""
-                  } border-0 border-b-2 max-[1024px]:border-white border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-white peer`}
+                  } border-0 border-b-2 max-[1024px]:border-black border-gray-400 appearance-none   focus:outline-none focus:ring-0 focus:border-black peer`}
                 />
                 <label
                   htmlFor="teamMembers"
-                  className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 max-[1024px]:text-white duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                  className="peer-focus:font-medium absolute text-sm text-gray-500  max-[1024px]:text-black duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                 >
                   {tags.length > 0
                     ? `Total Team Members ${tags.length}`
@@ -319,26 +321,34 @@ const Page = () => {
                     handleAddTag(inputValue);
                     setInputValue(""); // Clear input value after adding tag
                   }}
-                  className="absolute right-2 top-2 px-2 py-1 text-white text-[14px]"
+                  className="absolute right-2 top-2 px-2 py-1 max-[1024px]:text-black text-gray-500  text-[14px]"
                 >
                   Add
                 </button>
               </div>
               <div>
                 {tags.length > 0 && (
-                  <div className="flex min-[1024px]:items-center max-[1024px]:flex-col  gap-4">
-                    <div className="text-gray-400 max-[1024px]:text-white ">
+                  <div className="flex min-[1024px]:items-center max-[1024px]:flex-col  gap-2">
+                    <div
+                      className={`  ${
+                        tags.length >= 1
+                          ? "text-black"
+                          : "text-gray-400 max-[1024px]:text-black"
+                      }`}
+                    >
                       Members:
                     </div>
                     <div className="max-w-[600px] flex flex-wrap items-center gap-2">
                       {tags.map((tag, index) => (
                         <div
                           key={index}
-                          className="bg-white flex items-center gap-2  text-black rounded px-2 py-1 m-1"
+                          className="bg-black max-[1024px]:bg-white flex items-center gap-2  text-black rounded px-2 py-1 m-1"
                         >
-                          <div className="text-[15px]">{tag}</div>
+                          <div className="text-[15px] max-[1024px]:text-black text-white">
+                            {tag}
+                          </div>
                           <button
-                            className="border-black border  rounded-xl hover:bg-white hover:text-black"
+                            className="max-[1024px]:border-black border  rounded-xl  max-[1024px]:text-black text-white border-white"
                             onClick={() => removeTag(index)}
                           >
                             <RxCross2 />
@@ -357,11 +367,11 @@ const Page = () => {
                   type="text"
                   name="projectTitle"
                   id="projectTitle"
-                  className={`block py-2.5 px-0 w-full text-sm text-white bg-transparent ${
+                  className={`block py-2.5 px-0 w-full text-sm text-black bg-transparent ${
                     formErrors.projectTitle
                       ? "border-red-500"
-                      : "border-gray-300 max-[1024px]:border-white "
-                  } border-0 border-b-2  appearance-none focus:outline-none focus:ring-0 focus:border-white peer`}
+                      : " max-[1024px]:border-black border-gray-400"
+                  } border-0 border-b-2 appearance-none   focus:outline-none focus:ring-0 focus:border-black peer`}
                   placeholder=" "
                   required
                   value={formValues.projectTitle}
@@ -369,7 +379,7 @@ const Page = () => {
                 />
                 <label
                   htmlFor="projectTitle"
-                  className="peer-focus:font-medium absolute text-sm text-gray-500 max-[1024px]:text-white dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100  w-full peer-placeholder-shown:translate-y-0 peer-focus:text-[12px] peer-focus:-translate-y-6"
+                  className="peer-focus:font-medium absolute text-sm text-gray-500 max-[1024px]:text-black dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100  w-full peer-placeholder-shown:translate-y-0 peer-focus:text-[12px] peer-focus:-translate-y-6"
                 >
                   {formErrors.projectTitle ? (
                     <div className="flex  justify-between items-center gap-1">
@@ -388,11 +398,11 @@ const Page = () => {
               <textarea
                 name="projectDesc"
                 id="projectDesc"
-                className={`block py-2.5 px-0 w-full text-sm text-white bg-transparent ${
+                className={`block py-2.5 px-0 w-full text-sm text-black bg-transparent ${
                   formErrors.projectDesc
                     ? "border-red-500"
-                    : "border-gray-300 max-[1024px]:border-white "
-                } border-0 border-b-2  appearance-none focus:outline-none focus:ring-0 focus:border-white peer`}
+                    : " max-[1024px]:border-black border-gray-400"
+                } border-0 border-b-2 appearance-none   focus:outline-none focus:ring-0 focus:border-black peer`}
                 placeholder=" "
                 required
                 value={formValues.projectDesc}
@@ -400,7 +410,7 @@ const Page = () => {
               />
               <label
                 htmlFor="projectDesc"
-                className="peer-focus:font-medium absolute text-sm text-gray-500 max-[1024px]:text-white dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100  w-full peer-placeholder-shown:translate-y-0 peer-focus:text-[12px] peer-focus:-translate-y-6"
+                className="peer-focus:font-medium absolute text-sm text-gray-500 max-[1024px]:text-black dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100  w-full peer-placeholder-shown:translate-y-0 peer-focus:text-[12px] peer-focus:-translate-y-6"
               >
                 {formErrors.projectDesc ? (
                   <div className="flex  justify-between items-center gap-1">
@@ -421,11 +431,11 @@ const Page = () => {
                   type="text"
                   name="leaderName"
                   id="leaderName"
-                  className={`block py-2.5 px-0 w-full text-sm text-white bg-transparent ${
+                  className={`block py-2.5 px-0 w-full text-sm text-black bg-transparent ${
                     formErrors.leaderName
                       ? "border-red-500"
-                      : "border-gray-300 max-[1024px]:border-white "
-                  } border-0 border-b-2  appearance-none focus:outline-none focus:ring-0 focus:border-white peer`}
+                      : " max-[1024px]:border-black border-gray-400"
+                  } border-0 border-b-2 appearance-none   focus:outline-none focus:ring-0 focus:border-black peer`}
                   placeholder=" "
                   required
                   value={formValues.leaderName}
@@ -433,7 +443,7 @@ const Page = () => {
                 />
                 <label
                   htmlFor="leaderName"
-                  className="peer-focus:font-medium absolute text-sm text-gray-500 max-[1024px]:text-white dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100  w-full peer-placeholder-shown:translate-y-0 peer-focus:text-[12px] peer-focus:-translate-y-6"
+                  className="peer-focus:font-medium absolute text-sm text-gray-500 max-[1024px]:text-black dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100  w-full peer-placeholder-shown:translate-y-0 peer-focus:text-[12px] peer-focus:-translate-y-6"
                 >
                   {formErrors.leaderName ? (
                     <div className="flex  justify-between items-center gap-1">
@@ -452,11 +462,11 @@ const Page = () => {
                   type="text"
                   name="section"
                   id="section"
-                  className={`block py-2.5 px-0 w-full text-sm text-white bg-transparent ${
+                  className={`block py-2.5 px-0 w-full text-sm text-black bg-transparent ${
                     formErrors.section
                       ? "border-red-500"
-                      : "border-gray-300 max-[1024px]:border-white "
-                  } border-0 border-b-2  appearance-none focus:outline-none focus:ring-0 focus:border-white peer`}
+                      : " max-[1024px]:border-black border-gray-400"
+                  } border-0 border-b-2 appearance-none   focus:outline-none focus:ring-0 focus:border-black peer`}
                   placeholder=" "
                   required
                   value={formValues.section}
@@ -464,7 +474,7 @@ const Page = () => {
                 />
                 <label
                   htmlFor="section"
-                  className="peer-focus:font-medium absolute text-sm text-gray-500 max-[1024px]:text-white dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100  w-full peer-placeholder-shown:translate-y-0 peer-focus:text-[12px] peer-focus:-translate-y-6"
+                  className="peer-focus:font-medium absolute text-sm text-gray-500 max-[1024px]:text-black dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100  w-full peer-placeholder-shown:translate-y-0 peer-focus:text-[12px] peer-focus:-translate-y-6"
                 >
                   {formErrors.section ? (
                     <div className="flex  justify-between items-center gap-1">
@@ -483,11 +493,11 @@ const Page = () => {
                   type="text"
                   name="aridNumber"
                   id="aridNumber"
-                  className={`block py-2.5 px-0 w-full text-sm text-white bg-transparent ${
+                  className={`block py-2.5 px-0 w-full text-sm text-black bg-transparent ${
                     formErrors.aridNumber
                       ? "border-red-500"
-                      : "border-gray-300 max-[1024px]:border-white "
-                  } border-0 border-b-2  appearance-none focus:outline-none focus:ring-0 focus:border-white peer`}
+                      : " max-[1024px]:border-black border-gray-400"
+                  } border-0 border-b-2 appearance-none   focus:outline-none focus:ring-0 focus:border-black peer`}
                   placeholder=" "
                   required
                   value={formValues.aridNumber}
@@ -495,7 +505,7 @@ const Page = () => {
                 />
                 <label
                   htmlFor="aridNumber"
-                  className="peer-focus:font-medium absolute text-sm text-gray-500 max-[1024px]:text-white dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100  w-full peer-placeholder-shown:translate-y-0 peer-focus:text-[12px] peer-focus:-translate-y-6"
+                  className="peer-focus:font-medium absolute text-sm text-gray-500 max-[1024px]:text-black dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100  w-full peer-placeholder-shown:translate-y-0 peer-focus:text-[12px] peer-focus:-translate-y-6"
                 >
                   {formErrors.aridNumber ? (
                     <div className="flex  justify-between items-center gap-1">
@@ -517,11 +527,11 @@ const Page = () => {
                   type="email"
                   name="email"
                   id="email"
-                  className={`block py-2.5 px-0 w-full text-sm text-white bg-transparent ${
+                  className={`block py-2.5 px-0 w-full text-sm text-black bg-transparent ${
                     formErrors.email
                       ? "border-red-500"
-                      : "border-gray-300 max-[1024px]:border-white "
-                  } border-0 border-b-2  appearance-none focus:outline-none focus:ring-0 focus:border-white peer`}
+                      : " max-[1024px]:border-black border-gray-400"
+                  } border-0 border-b-2 appearance-none   focus:outline-none focus:ring-0 focus:border-black peer`}
                   placeholder=" "
                   required
                   value={formValues.email}
@@ -529,7 +539,7 @@ const Page = () => {
                 />
                 <label
                   htmlFor="email"
-                  className="peer-focus:font-medium absolute text-sm text-gray-500 max-[1024px]:text-white dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100  w-full peer-placeholder-shown:translate-y-0 peer-focus:text-[12px] peer-focus:-translate-y-6"
+                  className="peer-focus:font-medium absolute text-sm text-gray-500 max-[1024px]:text-black dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100  w-full peer-placeholder-shown:translate-y-0 peer-focus:text-[12px] peer-focus:-translate-y-6"
                 >
                   {formErrors.email ? (
                     <div className="flex  justify-between items-center gap-1">
@@ -548,11 +558,11 @@ const Page = () => {
                   type="text"
                   name="phoneNumber"
                   id="phoneNumber"
-                  className={`block py-2.5 px-0 w-full text-sm text-white bg-transparent ${
+                  className={`block py-2.5 px-0 w-full text-sm text-black bg-transparent ${
                     formErrors.phoneNumber
                       ? "border-red-500"
-                      : "border-gray-300 max-[1024px]:border-white "
-                  } border-0 border-b-2  appearance-none focus:outline-none focus:ring-0 focus:border-white peer`}
+                      : " max-[1024px]:border-black border-gray-400"
+                  } border-0 border-b-2 appearance-none   focus:outline-none focus:ring-0 focus:border-black peer`}
                   placeholder=" "
                   required
                   value={formValues.phoneNumber}
@@ -561,7 +571,7 @@ const Page = () => {
 
                 <label
                   htmlFor="phoneNumber"
-                  className="peer-focus:font-medium absolute text-sm text-gray-500 max-[1024px]:text-white dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100  w-full peer-placeholder-shown:translate-y-0 peer-focus:text-[12px] peer-focus:-translate-y-6"
+                  className="peer-focus:font-medium absolute text-sm text-gray-500 max-[1024px]:text-black dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-white peer-focus:dark:border-white peer-placeholder-shown:scale-100  w-full peer-placeholder-shown:translate-y-0 peer-focus:text-[12px] peer-focus:-translate-y-6"
                 >
                   {formErrors.phoneNumber ? (
                     <div className="flex  justify-between items-center gap-1">
@@ -579,7 +589,7 @@ const Page = () => {
             <button
               type="submit"
               disabled={processing || !isFormValid}
-              className={`w-full bg-black  border hover:border-white text-white px-4 py-2 rounded-md transition-colors`}
+              className={`w-full bg-black   text-white px-4 py-2 rounded-md transition-colors`}
             >
               {processing ? (
                 <div className="flex items-center justify-center group">
